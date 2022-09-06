@@ -11,6 +11,7 @@ type UseListedNftsResponse = {
   buyNft: (token: number, value: number) => Promise<void>
 }
 
+
 type ListedNftsHookFactory = CryptoHookFactory<Nft[], UseListedNftsResponse> 
 
 export type UseListedNftsHook = ReturnType<ListedNftsHookFactory>
@@ -23,13 +24,21 @@ export const hookFactory: ListedNftsHookFactory = ({contract}) => () => {
 
      const nfts = [] as Nft[];
      const coreNfts = await contract!.getAllNftsOnSale();
+     
+     let fixIPFSURL = (url: string) => {
+      if (url.startsWith("ipfs")) {
+        return "https://ipfs.io/ipfs/" + url.split("ipfs://").slice(-1);
+      } else {
+        return url + "?format=json";
+      }
+    };
 
      for (let i = 0; i < coreNfts.length; i++) {
       const item = coreNfts[i];
       const tokenURI = await contract!.tokenURI(item.tokenId);
-      const metaRes = await fetch(tokenURI);
+      const metaRes = await fetch(fixIPFSURL(tokenURI));
       const meta = await metaRes.json();
-
+      
       nfts.push({
         price: parseFloat(ethers.utils.formatEther(item.price)),
         tokenId: item.tokenId.toNumber(),
@@ -38,7 +47,10 @@ export const hookFactory: ListedNftsHookFactory = ({contract}) => () => {
         meta
       })
     }
-     return nfts;
+   
+    
+    return nfts;
+    
     }
   )
 const _contract = contract;
