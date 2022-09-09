@@ -8,7 +8,8 @@ import { useCallback } from "react";
 //deps -> provider, ethereum , contract (web3state)
 
 type UseListedNftsResponse = {
-  buyNft: (token: number, value: number) => Promise<void>
+  buyNft: (token: number, value: string) => Promise<void>
+ 
 }
 
 
@@ -27,34 +28,37 @@ export const hookFactory: ListedNftsHookFactory = ({contract}) => () => {
      
      let fixIPFSURL = (url: string) => {
       if (url.startsWith("ipfs")) {
-        return "https://ipfs.io/ipfs/" + url.split("ipfs://").slice(-1);
-      } else {
-        return url + "?format=json";
-      }
-    };
+        return "https://" + url.split("ipfs://").slice(-1);
+       } else {
+         return url + "?format=json";
+       }
+   };
 
      for (let i = 0; i < coreNfts.length; i++) {
       const item = coreNfts[i];
       const tokenURI = await contract!.tokenURI(item.tokenId);
       const metaRes = await fetch(fixIPFSURL(tokenURI));
       const meta = await metaRes.json();
-      
-      nfts.push({
-        price: parseFloat(ethers.utils.formatEther(item.price)),
-        tokenId: item.tokenId.toNumber(),
-        creator: item.creator,
-        isListed: item.isListed,
-        meta
-      })
-    }
-   
     
+      
+        nfts.push({
+          price: parseFloat(ethers.utils.formatEther(item.price)),
+          tokenId: item.tokenId.toNumber(),
+          creator: item.creator,
+          isListed: item.isListed,
+          meta
+        })
+      
+
+      console.log(item)     
+    }
+
     return nfts;
     
     }
   )
 const _contract = contract;
-  const buyNft = useCallback(async (tokenId: number, value: number) => {
+  const buyNft = useCallback(async (tokenId: number, value: string) => {
     try {
      const result = await _contract!.buyNft(
         tokenId, {
@@ -68,9 +72,11 @@ const _contract = contract;
     }
   }, [_contract])
 
+
    return {
     ...swr,
     buyNft,
+    
     data: data || [],
   
   }

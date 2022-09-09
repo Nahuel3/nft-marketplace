@@ -6,6 +6,11 @@ const keys = require("./keys.json");
 
 
 module.exports = { 
+  
+  plugins: ["truffle-plugin-verify"],
+  api_keys:{
+    etherscan: "1RSBK6J5EHHVYTFXWTJMCDRRT3553FNWP8"
+  },
   contracts_build_directory: "./public/contracts",
   networks: {
     

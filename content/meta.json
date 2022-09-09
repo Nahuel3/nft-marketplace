@@ -1,25 +1,33 @@
 [{
-  "description": "Fierce violet creature. Very durable and tanky.",
+  "name": "grey",
+  "description": "epic grey",
   "image": "https://gateway.pinata.cloud/ipfs/QmRy3zMU5yera8FxEepyh6JcSFSxF1B4DAwpxS5nc5c7M4/0.png",
-  "name": "Eincode Creature #1",
   "attributes": [
     {
       "trait_type": "attack",
-      "value": "20"
+      "value": "120"
     },
     {
       "trait_type": "health",
-      "value": "100"
+      "value": "60"
     },
     {
       "trait_type": "speed",
       "value": "30"
+    },
+    {
+      "trait_type": "armor",
+      "value": "42"
+    },
+    {
+      "trait_type": "raza",
+      "value": "Saiyan"
     }
   ]
 },{
-  "description": "Fierce blueish creature. Avarage in attack and speed.",
-  "image": "https://gateway.pinata.cloud/ipfs/QmcDKPEhmTrkaFXxAxV5TeumHrb7e6yBxNAwmHGwHTcivd",
-  "name": "Eincode Creature #2",
+  "name": "blu",
+  "description": "commun blue",
+  "image": "https://gateway.pinata.cloud/ipfs/QmcDKPEhmTrkaFXxAxV5TeumHrb7e6yBxNAwmHGwHTcivd/1.png",
   "attributes": [
     {
       "trait_type": "attack",
@@ -28,11 +36,74 @@
     {
       "trait_type": "health",
       "value": "80"
-    },
+    },   
     {
       "trait_type": "speed",
       "value": "50"
+    },    
+    {
+      "trait_type": "armor",
+      "value": "52"
+    },
+    {
+      "trait_type": "raza",
+      "value": "Human"
     }
   ]
-  
-}]
+  },
+  {
+    "description": "floor.",
+    "image": "https://gateway.pinata.cloud/ipfs/QmcDKPEhmTrkaFXxAxV5TeumHrb7e6yBxNAwmHGwHTcivd/2.png",
+    "name": "Red legendary",
+    "attributes": [
+      {
+        "trait_type": "attack",
+        "value": "40"
+      },
+      {
+        "trait_type": "health",
+        "value": "150"
+      },
+      {
+        "trait_type": "speed",
+        "value": "10"
+      },
+      {
+        "trait_type": "armor",
+        "value": "100"
+      },
+      {
+        "trait_type": "raza",
+        "value": "Elfo"
+      }
+    ]
+    
+  },
+  {
+    "name": "cyan",
+    "description": "Color cyan",
+    "image": "https://gateway.pinata.cloud/ipfs/QmRy3zMU5yera8FxEepyh6JcSFSxF1B4DAwpxS5nc5c7M4/3.png",
+    "attributes": [
+      {
+        "trait_type": "attack",
+        "value": "40"
+      },
+      {
+        "trait_type": "health",
+        "value": "150"
+      },
+      {
+        "trait_type": "speed",
+        "value": "10"
+      },
+      {
+        "trait_type": "armor",
+        "value": "172"
+      },
+      {
+        "trait_type": "raza",
+        "value": "Elfo"
+      }
+    ]
+  }
+]
