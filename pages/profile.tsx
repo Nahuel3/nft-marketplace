@@ -132,6 +132,8 @@ const Profile: NextPage = () => {
                 </div>
 
                 <div className="flex">
+                  {
+                  !activeNft.isListed &&
                  
                   <input
                           onChange={(e) => setPrice(e.target.value)}
@@ -142,33 +144,39 @@ const Profile: NextPage = () => {
                           className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                           placeholder="0.8"
                         />
-                  <button
-                   
+                    }     
+
+                  {
+                  !activeNft.isListed &&
+                   <button
                     onClick={() => {
                       nfts.listNft(
                         activeNft.tokenId,
-                        parseFloat(price).toString()
-                        
+                        parseFloat(price).toString()                        
                       )
                     }}
                     type="button"
-                    className="disabled:text-gray-400 disabled:cursor-not-allowed flex-1 ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    {activeNft.isListed ?  <button
+                    className="flex-1 ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  > Sell Nft 
+                  </button> 
+                  }
+                  {
+                    activeNft.isListed &&
+                    <button
                  
                   onClick={() => {
                     nfts.cancellSellNft(
-                      activeNft.tokenId           
+                      activeNft.tokenId       
                     )
                   }}
                   type="button"
-                  
-                >
+                  className='className="flex-1 ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"'                 
+                  >
                   Cancell NFT Sell
-                </button> : "sell NFT"}
-                  </button>
-
-                 
+                </button> 
+                  }
+                     
+                              
                 </div>
               </div>
             }

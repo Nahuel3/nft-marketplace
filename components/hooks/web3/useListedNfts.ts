@@ -50,7 +50,7 @@ export const hookFactory: ListedNftsHookFactory = ({contract}) => () => {
         })
       
 
-      console.log(item)     
+          
     }
 
     return nfts;
