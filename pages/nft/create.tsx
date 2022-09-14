@@ -97,9 +97,9 @@ const NftCreate: NextPage = () => {
     }
   }
 
-  const createNft = async () => {
+  const createFoxy = async () => {
     try {
-      const tx = await contract?.mintToken(
+      const tx = await contract?.foxyBuy(
         parseFloat("2").toString(),
         {
           value: ethers.utils.parseEther(0.25.toString())
@@ -108,11 +108,63 @@ const NftCreate: NextPage = () => {
       
 
       await tx?.wait();
-      alert("Nft was created!");
+      alert("Foxy was created!");
     } catch (e: any) {
       console.error(e.message);
     }
   }
+
+  const createAlufi = async () => {
+    try {
+      const tx = await contract?.alufiBuy(
+        parseFloat("2").toString(),
+        {
+          value: ethers.utils.parseEther(0.25.toString())
+        }
+      );
+      
+
+      await tx?.wait();
+      alert("Alufi was created!");
+    } catch (e: any) {
+      console.error(e.message);
+    }
+  }
+
+  const createAqua = async () => {
+    try {
+      const tx = await contract?.aquanBuy(
+        parseFloat("2").toString(),
+        {
+          value: ethers.utils.parseEther(0.25.toString())
+        }
+      );
+      
+
+      await tx?.wait();
+      alert("Aqua was created!");
+    } catch (e: any) {
+      console.error(e.message);
+    }
+  }
+
+  const createFluffy = async () => {
+    try {
+      const tx = await contract?.fluffyBuy(
+        parseFloat("2").toString(),
+        {
+          value: ethers.utils.parseEther(0.25.toString())
+        }
+      );
+      
+
+      await tx?.wait();
+      alert("Fluffy was created!");
+    } catch (e: any) {
+      console.error(e.message);
+    }
+  }
+
 
   const handleAttributeChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -213,11 +265,35 @@ const NftCreate: NextPage = () => {
                   </div>
                   <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                     <button
-                      onClick={createNft}
+                      onClick={createFoxy}
                       type="button"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                      Mint NFT
+                      Mint Foxy
+                    </button>
+
+                    <button
+                      onClick={createAlufi}
+                      type="button"
+                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      Mint Alufi
+                    </button>
+
+                    <button
+                      onClick={createAqua}
+                      type="button"
+                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      Mint Aqua
+                    </button>
+
+                    <button
+                      onClick={createFluffy}
+                      type="button"
+                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      Mint Fluffy
                     </button>
                   </div>
                 </div>

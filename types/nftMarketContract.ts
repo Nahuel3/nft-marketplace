@@ -72,12 +72,9 @@ export type NftMarketContractMethodNames =
   | '_idToNftItem'
   | 'approve'
   | 'balanceOf'
-  | 'baseExtension'
-  | 'baseURI'
   | 'getApproved'
   | 'isApprovedForAll'
   | 'listingPrice'
-  | 'maxSupply'
   | 'name'
   | 'owner'
   | 'ownerOf'
@@ -89,6 +86,12 @@ export type NftMarketContractMethodNames =
   | 'symbol'
   | 'transferFrom'
   | 'transferOwnership'
+  | 'setMaxFoxys'
+  | 'setMaxAquans'
+  | 'setMaxAlufis'
+  | 'setMaxFluffys'
+  | 'setMaxGolems'
+  | 'setMaxElfos'
   | 'setListingPrice'
   | 'withdraw'
   | 'getBalanceContract'
@@ -99,7 +102,12 @@ export type NftMarketContractMethodNames =
   | 'tokenOfOwnerByIndex'
   | 'getAllNftsOnSale'
   | 'getOwnedNfts'
-  | 'mintToken'
+  | 'foxyBuy'
+  | 'alufiBuy'
+  | 'aquanBuy'
+  | 'fluffyBuy'
+  | 'golemBuy'
+  | 'elfoBuy'
   | 'tokenURI'
   | 'buyNft'
   | 'cancellSellNft'
@@ -198,20 +206,6 @@ export interface NftMarketContract {
    * Constant: true
    * StateMutability: view
    * Type: function
-   */
-  baseExtension(overrides?: ContractCallOverrides): Promise<string>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  baseURI(overrides?: ContractCallOverrides): Promise<string>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
    * @param tokenId Type: uint256, Indexed: false
    */
   getApproved(
@@ -238,13 +232,6 @@ export interface NftMarketContract {
    * Type: function
    */
   listingPrice(overrides?: ContractCallOverrides): Promise<BigNumber>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  maxSupply(overrides?: ContractCallOverrides): Promise<BigNumber>;
   /**
    * Payable: false
    * Constant: true
@@ -373,6 +360,72 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
+   * @param newMaxFoxy Type: uint256, Indexed: false
+   */
+  setMaxFoxys(
+    newMaxFoxy: BigNumberish,
+    overrides?: ContractTransactionOverrides
+  ): Promise<ContractTransaction>;
+  /**
+   * Payable: false
+   * Constant: false
+   * StateMutability: nonpayable
+   * Type: function
+   * @param newMaxAquan Type: uint256, Indexed: false
+   */
+  setMaxAquans(
+    newMaxAquan: BigNumberish,
+    overrides?: ContractTransactionOverrides
+  ): Promise<ContractTransaction>;
+  /**
+   * Payable: false
+   * Constant: false
+   * StateMutability: nonpayable
+   * Type: function
+   * @param newMaxAlufis Type: uint256, Indexed: false
+   */
+  setMaxAlufis(
+    newMaxAlufis: BigNumberish,
+    overrides?: ContractTransactionOverrides
+  ): Promise<ContractTransaction>;
+  /**
+   * Payable: false
+   * Constant: false
+   * StateMutability: nonpayable
+   * Type: function
+   * @param newMaxFluffys Type: uint256, Indexed: false
+   */
+  setMaxFluffys(
+    newMaxFluffys: BigNumberish,
+    overrides?: ContractTransactionOverrides
+  ): Promise<ContractTransaction>;
+  /**
+   * Payable: false
+   * Constant: false
+   * StateMutability: nonpayable
+   * Type: function
+   * @param newMaxGolems Type: uint256, Indexed: false
+   */
+  setMaxGolems(
+    newMaxGolems: BigNumberish,
+    overrides?: ContractTransactionOverrides
+  ): Promise<ContractTransaction>;
+  /**
+   * Payable: false
+   * Constant: false
+   * StateMutability: nonpayable
+   * Type: function
+   * @param newMaxElfos Type: uint256, Indexed: false
+   */
+  setMaxElfos(
+    newMaxElfos: BigNumberish,
+    overrides?: ContractTransactionOverrides
+  ): Promise<ContractTransaction>;
+  /**
+   * Payable: false
+   * Constant: false
+   * StateMutability: nonpayable
+   * Type: function
    * @param newPrice Type: uint256, Indexed: false
    */
   setListingPrice(
@@ -467,7 +520,62 @@ export interface NftMarketContract {
    * Type: function
    * @param amount Type: uint256, Indexed: false
    */
-  mintToken(
+  foxyBuy(
+    amount: BigNumberish,
+    overrides?: ContractTransactionOverrides
+  ): Promise<ContractTransaction>;
+  /**
+   * Payable: true
+   * Constant: false
+   * StateMutability: payable
+   * Type: function
+   * @param amount Type: uint256, Indexed: false
+   */
+  alufiBuy(
+    amount: BigNumberish,
+    overrides?: ContractTransactionOverrides
+  ): Promise<ContractTransaction>;
+  /**
+   * Payable: true
+   * Constant: false
+   * StateMutability: payable
+   * Type: function
+   * @param amount Type: uint256, Indexed: false
+   */
+  aquanBuy(
+    amount: BigNumberish,
+    overrides?: ContractTransactionOverrides
+  ): Promise<ContractTransaction>;
+  /**
+   * Payable: true
+   * Constant: false
+   * StateMutability: payable
+   * Type: function
+   * @param amount Type: uint256, Indexed: false
+   */
+  fluffyBuy(
+    amount: BigNumberish,
+    overrides?: ContractTransactionOverrides
+  ): Promise<ContractTransaction>;
+  /**
+   * Payable: true
+   * Constant: false
+   * StateMutability: payable
+   * Type: function
+   * @param amount Type: uint256, Indexed: false
+   */
+  golemBuy(
+    amount: BigNumberish,
+    overrides?: ContractTransactionOverrides
+  ): Promise<ContractTransaction>;
+  /**
+   * Payable: true
+   * Constant: false
+   * StateMutability: payable
+   * Type: function
+   * @param amount Type: uint256, Indexed: false
+   */
+  elfoBuy(
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;

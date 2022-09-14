@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { Nft} from '@_types/nft';
+import { Nft } from '@_types/nft';
 import { NextPage } from "next";
 import { BaseLayout } from "@ui";
 import { useOwnedNfts } from "@hooks/web3";
 import { useEffect, useState } from 'react';
-import { ethers } from 'ethers';
+
 
 const tabs = [
   { name: 'Your Collection', href: '#', current: true },
@@ -18,22 +18,22 @@ function classNames(...classes: string[]) {
 
 
 const Profile: NextPage = () => {
-  
-  
-  const [price, setPrice] = useState("");
-   const {nfts} = useOwnedNfts();
-   const [activeNft, setActiveNft] = useState<Nft>();
 
-   useEffect(() => {
-     if (nfts.data && nfts.data.length > 0) {
-       setActiveNft(nfts.data[0]);
-     }
-     return () => setActiveNft(undefined)
-   }, [nfts.data])
-   
+
+  const [price, setPrice] = useState("");
+  const { nfts } = useOwnedNfts();
+  const [activeNft, setActiveNft] = useState<Nft>();
+
+  useEffect(() => {
+    if (nfts.data && nfts.data.length > 0) {
+      setActiveNft(nfts.data[0]);
+    }
+    return () => setActiveNft(undefined)
+  }, [nfts.data])
+
   return (
     <BaseLayout>
-      
+
       <div className="h-full flex">
         <div className="flex-1 flex flex-col overflow-hidden">
           <div className="flex-1 flex items-stretch overflow-hidden">
@@ -108,78 +108,90 @@ const Profile: NextPage = () => {
 
             {/* Details sidebar */}
             <aside className="hidden w-96 bg-white p-8 border-l border-gray-200 overflow-y-auto lg:block">
-            { activeNft &&
-              <div className="pb-16 space-y-6">
-                <div>
-                  <div className="block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                    <img src={activeNft.meta.image} alt="" className="object-cover" />
-                  </div>
-                  <div className="mt-4 flex items-start justify-between">
-                    <div>
-                      <h2 className="text-lg font-medium text-gray-900">
-                        <span className="sr-only">Details for </span>
-                        {activeNft.meta.name}
-                      </h2>
-                      <p className="text-sm font-medium text-gray-500">{activeNft.meta.description}</p>
+              {activeNft &&
+                <div className="pb-16 space-y-6">
+                  <div>
+                    <div className="block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
+                      <img src={activeNft.meta.image} alt="" className="object-cover" />
+                    </div>
+                    <div className="mt-4 flex items-start justify-between">
+                      <div>
+                        <h2 className="text-lg font-medium text-gray-900">
+                          <span className="sr-only">Details for </span>
+                          {activeNft.meta.name}
+                        </h2>
+                        <p className="text-sm font-medium text-gray-500">{activeNft.meta.description}</p>
+
+                        {activeNft.meta.attributes.map(attribute =>
+                          <div key={attribute.trait_type} className="flex flex-col px-4 pt-4">
+                            <dt className="order-2 text-sm font-medium text-gray-500">
+                              {attribute.trait_type}
+                            </dt>
+                            <dd className="order-1 text-xl font-extrabold text-indigo-600">
+                              {attribute.value}
+                            </dd>
+                          </div>
+                        )}
+
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-900">Information</h3>
-                  <dl className="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
-                    
-                  </dl>
-                </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Information</h3>
+                    <dl className="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
 
-                <div className="flex">
-                  {
-                  !activeNft.isListed &&
-                 
-                  <input
-                          onChange={(e) => setPrice(e.target.value)}
-                          value={price}
-                          type="number"
-                          name="price"
-                          id="price"
-                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
-                          placeholder="0.8"
-                        />
-                    }     
+                    </dl>
+                  </div>
 
-                  {
-                  !activeNft.isListed &&
-                   <button
-                    onClick={() => {
-                      nfts.listNft(
-                        activeNft.tokenId,
-                        parseFloat(price).toString()                        
-                      )
-                    }}
-                    type="button"
-                    className="flex-1 ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  > Sell Nft 
-                  </button> 
-                  }
-                  {
-                    activeNft.isListed &&
-                    <button
-                 
-                  onClick={() => {
-                    nfts.cancellSellNft(
-                      activeNft.tokenId       
-                    )
-                  }}
-                  type="button"
-                  className='className="flex-1 ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"'                 
-                  >
-                  Cancell NFT Sell
-                </button> 
-                  }
-                     
-                              
+                  <div className="flex">
+                    {
+                      !activeNft.isListed &&
+
+                      <input
+                        onChange={(e) => setPrice(e.target.value)}
+                        value={price}
+                        type="number"
+                        name="price"
+                        id="price"
+                        className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                        placeholder="0.8"
+                      />
+                    }
+
+                    {
+                      !activeNft.isListed &&
+                      <button
+                        onClick={() => {
+                          nfts.listNft(
+                            activeNft.tokenId,
+                            parseFloat(price).toString()
+                          )
+                        }}
+                        type="button"
+                        className="flex-1 ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      > Sell Nft
+                      </button>
+                    }
+                    {
+                      activeNft.isListed &&
+                      <button
+
+                        onClick={() => {
+                          nfts.cancellSellNft(
+                            activeNft.tokenId
+                          )
+                        }}
+                        type="button"
+                        className='className="flex-1 ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"'
+                      >
+                        Cancell NFT Sell
+                      </button>
+                    }
+
+
+                  </div>
                 </div>
-              </div>
-            }
+              }
             </aside>
           </div>
         </div>
