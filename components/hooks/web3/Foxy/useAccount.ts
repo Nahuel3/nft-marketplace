@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { CryptoHookFactory } from "@_types/hooks";
+import { CryptoHookFactory } from "@_types/parteFoxy/hookFoxy";
 import useSWR from "swr";
 
 //deps -> provider, ethereum , contract (web3state)

@@ -1,4 +1,4 @@
-import { Web3Dependencies } from '@_types/hooks';
+import { Web3Dependencies } from '@_types/parteFoxy/hookFoxy';
 import { setupHooks, Web3Hooks } from './../../hooks/web3/setupHooks';
 import { MetaMaskInpageProvider } from "@metamask/providers";
 import { Contract, ethers, providers } from "ethers";

@@ -1,5 +1,5 @@
 
-import { NftMarketContractSeconds } from "./nftMarketContractSeconds";
+import { NftMarketContractSeconds } from "../nftMarketContractSeconds";
 import { MetaMaskInpageProvider } from '@metamask/providers';
 import { Contract } from 'ethers';
 import { providers } from 'ethers';

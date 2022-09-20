@@ -1,4 +1,4 @@
-import { FileReq } from "@_types/nft";
+import { FileReq } from "@_types/parteFoxy/nftFoxy";
 import { NextApiRequest, NextApiResponse } from "next";
 import { Session } from "next-iron-session";
 import { addressCheckMiddleware, pinataApiKey, pinataSecretApiKey, withSession } from "./utils";

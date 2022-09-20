@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import useSWR from "swr";
-import { CryptoHookFactorys } from '@_types/hoooks2';
+import { CryptoHookFactorys } from '@_types/parteAlufi/hookAlufi';
 
 //deps -> provider, ethereum , contract (web3state)
 
@@ -18,7 +18,7 @@ export type UseAccountHooks = ReturnType<AccountHookFactorys>
 export const hookFactory: AccountHookFactorys = ({provider, ethereum, isLoading}) => () => {
 
   const {data, mutate, isValidating, ...swr} = useSWR(
-    provider ? "web3/useAccount" : null,
+    provider ? "web3/useAccounts" : null,
    async () => {
 
       const accounts = await provider!.listAccounts();   

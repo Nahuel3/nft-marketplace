@@ -1,29 +1,28 @@
-
-import { CryptoHookFactory } from "@_types/hooks";
 import { ethers } from "ethers";
 import useSWR from "swr";
-import { Nft } from "@_types/nft";
 import { useCallback } from "react";
+import { CryptoHookFactorys } from "@_types/parteAlufi/hookAlufi";
+import { NftAlufi } from "@_types/parteAlufi/nftAlufi";
 
 //deps -> provider, ethereum , contract (web3state)
 
 type UseListedNftsResponse = {
-  buyNft: (token: number, value: string) => Promise<void>
+  buyNftAlufis: (token: number, value: string) => Promise<void>
  
 }
 
 
-type ListedNftsHookFactory = CryptoHookFactory<Nft[], UseListedNftsResponse> 
+type ListedNftsHookFactory = CryptoHookFactorys<NftAlufi[], UseListedNftsResponse> 
 
-export type UseListedNftsHook = ReturnType<ListedNftsHookFactory>
+export type UseListedNftsHooks = ReturnType<ListedNftsHookFactory>
 
 export const hookFactory: ListedNftsHookFactory = ({contract}) => () => {
 
   const {data, ...swr} = useSWR(
-    contract ? "web3/useListedNfts" : null,
+    contract ? "web3/useListedNft" : null,
    async () => {
 
-     const nfts = [] as Nft[];
+     const nftsAlufis = [] as NftAlufi[];
      const coreNfts = await contract!.getAllNftsOnSale();
      
      let fixIPFSURL = (url: string) => {
@@ -41,7 +40,7 @@ export const hookFactory: ListedNftsHookFactory = ({contract}) => () => {
       const meta = await metaRes.json();
     
       
-        nfts.push({
+      nftsAlufis.push({
           price: parseFloat(ethers.utils.formatEther(item.price)),
           tokenId: item.tokenId.toNumber(),
           creator: item.creator,
@@ -53,12 +52,12 @@ export const hookFactory: ListedNftsHookFactory = ({contract}) => () => {
           
     }
 
-    return nfts;
+    return nftsAlufis;
     
     }
   )
 const _contract = contract;
-  const buyNft = useCallback(async (tokenId: number, value: string) => {
+  const buyNftAlufis = useCallback(async (tokenId: number, value: string) => {
     try {
      const result = await _contract!.buyNft(
         tokenId, {
@@ -75,8 +74,7 @@ const _contract = contract;
 
    return {
     ...swr,
-    buyNft,
-    
+    buyNftAlufis,
     data: data || [],
   
   }

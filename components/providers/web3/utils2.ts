@@ -1,4 +1,4 @@
-import { Web3Dependencies2 } from '@_types/hoooks2';
+import { Web3Dependencies2 } from '@_types/parteAlufi/hookAlufi';
 import { setupHooks2, Web3Hookss } from './../../hooks/web3/setupHooks';
 import { MetaMaskInpageProvider } from "@metamask/providers";
 import { Contract, ethers, providers } from "ethers";

@@ -1,28 +1,28 @@
 
-import { CryptoHookFactory } from "@_types/hooks";
 import { ethers } from "ethers";
 import useSWR from "swr";
-import { Nft } from "@_types/nft";
 import { useCallback } from "react";
+import { CryptoHookFactorys } from "@_types/parteAlufi/hookAlufi";
+import { NftAlufi } from "@_types/parteAlufi/nftAlufi";
 
 //deps -> provider, ethereum , contract (web3state)
 
 type useOwnedNftsResponse = {
-  listNft: (tokenId: number, price: string) => Promise<void>
-  cancellSellNft:(token: number) => Promise<void>
+  listNftAlufis: (tokenId: number, price: string) => Promise<void>
+  cancellSellNftsAlufis:(token: number) => Promise<void>
 }
 
-type OwnedNftsHookFactory = CryptoHookFactory<Nft[], useOwnedNftsResponse> 
+type OwnedNftsHookFactory = CryptoHookFactorys<NftAlufi[], useOwnedNftsResponse> 
 
-export type UseOwnedNftsHook = ReturnType<OwnedNftsHookFactory>
+export type UseOwnedNftsHooks = ReturnType<OwnedNftsHookFactory>
 
 export const hookFactory: OwnedNftsHookFactory = ({contract}) => () => {
 
   const {data, ...swr} = useSWR(
-    contract ? "web3/useOwnedNfts" : null,
+    contract ? "web3/useOwnedNft" : null,
    async () => {
 
-     const nfts = [] as Nft[];
+     const nftsAlufis = [] as NftAlufi[];
      const coreNfts = await contract!.getOwnedNfts();
 
      let fixIPFSURL = (url: string) => {
@@ -40,7 +40,7 @@ export const hookFactory: OwnedNftsHookFactory = ({contract}) => () => {
       const meta = await metaRes.json();
 
        
-      nfts.push({
+      nftsAlufis.push({
         price: parseFloat(ethers.utils.formatEther(item.price)),
         tokenId: item.tokenId.toNumber(),
         creator: item.creator,
@@ -49,11 +49,11 @@ export const hookFactory: OwnedNftsHookFactory = ({contract}) => () => {
       })
    
     }
-     return nfts;
+     return nftsAlufis;
     }
   )
   const _contract = contract;
-  const listNft = useCallback (async (tokenId: number, price: string) => {
+  const listNftAlufis = useCallback (async (tokenId: number, price: string) => {
     try {
      const result = await _contract!.placeNftOnSale(
         tokenId,
@@ -71,7 +71,7 @@ export const hookFactory: OwnedNftsHookFactory = ({contract}) => () => {
     }
   }, [_contract])
 
-  const cancellSellNft = useCallback(async (tokenId: number) => {
+  const cancellSellNftsAlufis = useCallback(async (tokenId: number) => {
     try {
      const result = await _contract!.cancellSellNft(
         tokenId
@@ -85,8 +85,8 @@ export const hookFactory: OwnedNftsHookFactory = ({contract}) => () => {
 
    return {
     ...swr,
-    listNft,
-    cancellSellNft,
+    listNftAlufis,
+    cancellSellNftsAlufis,
     data: data || [],
   
   }

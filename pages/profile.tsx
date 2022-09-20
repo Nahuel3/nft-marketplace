@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { Nft } from '@_types/nft';
+import { Nft } from '@_types/parteFoxy/nftFoxy';
 import { NextPage } from "next";
 import { BaseLayout } from "@ui";
-import { useOwnedNfts } from "@hooks/web3";
+import { useOwnedNfts, useOwnedNftss } from "@hooks/web3";
 import { useEffect, useState } from 'react';
 import { useWeb3 } from '@providers/web3';
 
@@ -21,15 +21,32 @@ function classNames(...classes: string[]) {
 const Profile: NextPage = () => {
 
   const [price, setPrice] = useState("");
-  const { nfts } = useOwnedNfts();
-  const [activeNft, setActiveNft] = useState<Nft>();
 
+  const { nfts } = useOwnedNfts();//FOXY
+
+  const { nftsAlufis } = useOwnedNftss(); //ALUFI
+
+  const [activeNft, setActiveNft] = useState<Nft>(); //FOXY
+
+  const [activeNfts, setActiveNfts] = useState<Nft>(); //ALUFI
+ 
+  //FOXY
   useEffect(() => {
     if (nfts.data && nfts.data.length > 0) {
       setActiveNft(nfts.data[0]);
     }
     return () => setActiveNft(undefined)
   }, [nfts.data])
+
+  //ALUFIS
+  useEffect(() => {
+    if (nftsAlufis.data && nftsAlufis.data.length > 0) {
+      setActiveNfts(nftsAlufis.data[0]);
+    }
+    return () => setActiveNfts(undefined)
+  }, [nftsAlufis.data])
+
+  
 
   return (
     <BaseLayout>
@@ -92,6 +109,8 @@ const Profile: NextPage = () => {
                               'object-cover pointer-events-none'
                             )}
                           />
+
+                          
                           <button type="button" className="absolute inset-0 focus:outline-none">
                             <span className="sr-only">View details for {nft.meta.name}</span>
                           </button>
@@ -102,6 +121,45 @@ const Profile: NextPage = () => {
                       </li>
                     ))}
                   </ul>
+
+                  <ul
+                    role="list"
+                    className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
+                  >
+                    {(nftsAlufis.data as Nft[]).map((nft) => (
+                      <li
+                        key={nft.tokenId}
+                        onClick={() => setActiveNfts(nft)}
+                        className="relative">
+                        <div
+                          className={classNames(
+                            nft.tokenId === activeNft?.tokenId
+                              ? 'ring-2 ring-offset-2 ring-indigo-500'
+                              : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500',
+                            'group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden'
+                          )}
+                        >
+                          <img
+                            src={nft.meta.image}
+                            alt=""
+                            className={classNames(
+                              nft.tokenId === activeNft?.tokenId ? '' : 'group-hover:opacity-75',
+                              'object-cover pointer-events-none'
+                            )}
+                          />
+
+                          
+                          <button type="button" className="absolute inset-0 focus:outline-none">
+                            <span className="sr-only">View details for {nft.meta.name}</span>
+                          </button>
+                        </div>
+                        <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
+                          {nft.meta.name}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+
                 </section>
               </div>
             </main>
@@ -193,6 +251,93 @@ const Profile: NextPage = () => {
                 </div>
               }
             </aside>
+
+            <aside className="hidden w-96 bg-white p-8 border-l border-gray-200 overflow-y-auto lg:block">
+              {activeNfts &&
+                <div className="pb-16 space-y-6">
+                  <div>
+                    <div className="block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
+                      <img src={activeNfts.meta.image} alt="" className="object-cover" />
+                    </div>
+                    <div className="mt-4 flex items-start justify-between">
+                      <div>
+                        <h2 className="text-lg font-medium text-gray-900">
+                          <span className="sr-only">Details for </span>
+                          {activeNfts.meta.name}
+                        </h2>
+                        <p className="text-sm font-medium text-gray-500">{activeNfts.meta.description}</p>
+
+                        {activeNfts.meta.attributes.map(attribute =>
+                          <div key={attribute.trait_type} className="flex flex-col px-4 pt-4">
+                            <dt className="order-2 text-sm font-medium text-gray-500">
+                              {attribute.trait_type}
+                            </dt>
+                            <dd className="order-1 text-xl font-extrabold text-indigo-600">
+                              {attribute.value}
+                            </dd>
+                          </div>
+                        )}
+
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Information</h3>
+                    <dl className="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
+
+                    </dl>
+                  </div>
+
+                  <div className="flex">
+                    {
+                      !activeNfts.isListed &&
+
+                      <input
+                        onChange={(e) => setPrice(e.target.value)}
+                        value={price}
+                        type="number"
+                        name="price"
+                        id="price"
+                        className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                        placeholder="0.8"
+                      />
+                    }
+
+                    {
+                      !activeNfts.isListed &&
+                      <button
+                        onClick={() => {
+                          nftsAlufis.listNftAlufis(
+                            activeNfts.tokenId,
+                            parseFloat(price).toString()
+                          )
+                        }}
+                        type="button"
+                        className="flex-1 ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      > Sell Nft
+                      </button>
+                    }
+                    {
+                      activeNfts.isListed &&
+                      <button
+
+                        onClick={() => {
+                          nftsAlufis.cancellSellNftsAlufis(
+                            activeNfts.tokenId
+                          )
+                        }}
+                        type="button"
+                        className='className="flex-1 ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"'
+                      >
+                        Cancell NFT Sell
+                      </button>
+                    }
+
+                  </div>
+                </div>
+              }
+            </aside>
+
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 
-import { CryptoHookFactorys } from "@_types/hoooks2";
+import { CryptoHookFactorys } from "@_types/parteAlufi/hookAlufi";
 import useSWR from "swr";
 
 //deps -> provider, ethereum , contract (web3state)
@@ -33,7 +33,7 @@ export type UseNetworkHooks = ReturnType<NetworkHookFactory>
 export const hookFactory: NetworkHookFactory = ({provider,  isLoading,}) => () => {
 
   const {data,  isValidating, ...swr} = useSWR(
-    provider ? "web3/useNetwork" : null,
+    provider ? "web3/useNetworks" : null,
    async () => {
 
     const chainId = (await provider!.getNetwork()).chainId;

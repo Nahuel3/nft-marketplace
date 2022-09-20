@@ -4,19 +4,19 @@
 
 import { ethers } from "ethers";
 import { FunctionComponent } from "react";
-import { Nft} from "../../../../types/nft";
+import { NftAlufi} from "../../../../types/parteAlufi/nftAlufi";
 
 
 type NftItemProps = {
-    item: Nft;
-    buyNft: (token: number, value: string) => Promise<void>
+    item: NftAlufi;
+    buyNftAlufis: (token: number, value: string) => Promise<void>
 }
 
 function shortifyAddress(address: string) {
     return `0x****${address.slice(-4)}`
   }
 
-const NftItem: FunctionComponent<NftItemProps> = ({item, buyNft}) => {
+const NftItemAlufi: FunctionComponent<NftItemProps> = ({item, buyNftAlufis}) => {
     return (
       <>
         <div className="flex-shrink-0">
@@ -79,7 +79,7 @@ const NftItem: FunctionComponent<NftItemProps> = ({item, buyNft}) => {
           <div>
             <button
               onClick={() => {
-                buyNft(item.tokenId, item.price.toString());
+                buyNftAlufis(item.tokenId, item.price.toString());
               }}
               type="button"
               className="disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none disabled:cursor-not-allowed mr-2 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -98,4 +98,4 @@ const NftItem: FunctionComponent<NftItemProps> = ({item, buyNft}) => {
     )
   }
 
-export default NftItem
+export default NftItemAlufi

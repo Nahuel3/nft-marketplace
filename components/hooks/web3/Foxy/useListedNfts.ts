@@ -1,8 +1,9 @@
+
+import { CryptoHookFactory } from "@_types/parteFoxy/hookFoxy";
 import { ethers } from "ethers";
 import useSWR from "swr";
-import { Nft } from "@_types/nft";
+import { Nft } from "@_types/parteFoxy/nftFoxy";
 import { useCallback } from "react";
-import { CryptoHookFactorys } from "@_types/hoooks2";
 
 //deps -> provider, ethereum , contract (web3state)
 
@@ -12,9 +13,9 @@ type UseListedNftsResponse = {
 }
 
 
-type ListedNftsHookFactory = CryptoHookFactorys<Nft[], UseListedNftsResponse> 
+type ListedNftsHookFactory = CryptoHookFactory<Nft[], UseListedNftsResponse> 
 
-export type UseListedNftsHooks = ReturnType<ListedNftsHookFactory>
+export type UseListedNftsHook = ReturnType<ListedNftsHookFactory>
 
 export const hookFactory: ListedNftsHookFactory = ({contract}) => () => {
 

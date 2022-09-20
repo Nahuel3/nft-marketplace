@@ -29,7 +29,7 @@ const removeGlobalListeners = (ethereum:MetaMaskInpageProvider) => {
 
 const Web3Context = createContext<Web3States>(createDefaultStates());
 
-const Web3Provider: FunctionComponent<Props> = ({ children }) => {
+const Web3Providers: FunctionComponent<Props> = ({ children }) => {
   const [web3Api, setWeb3Api] = useState<Web3States>(createDefaultStates())
 
   useEffect(() => {
@@ -79,9 +79,9 @@ export function useWebs3() {
   return useContext(Web3Context)
 }
 
-export function useHooks() {
+export function useHookss() {
   const { hooks } = useWebs3();
   return hooks
 }
 
-export default Web3Provider;
+export default Web3Providers;
