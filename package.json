@@ -7,7 +7,8 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "genContractType": "abi-types-generator './public/contracts/NftMarket.json' --output='./types' --name=nftMarketContract --provider=ethers_v5"
+        "genContractType": "abi-types-generator './public/contracts/NftMarket.json' --output='./types' --name=nftMarketContract --provider=ethers_v5",
+        "genContractTypes": "abi-types-generator './public/contracts/NftMarketSeconds.json' --output='./types' --name=nftMarketContractSeconds --provider=ethers_v5"
     },
     "dependencies": {
         "@headlessui/react": "^1.5.0",

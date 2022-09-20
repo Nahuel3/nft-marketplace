@@ -8,10 +8,10 @@ import {
 import { EthersContractContextV5 } from 'ethereum-abi-types-generator';
 
 export type ContractContext = EthersContractContextV5<
-  NftMarketContract,
-  NftMarketContractMethodNames,
-  NftMarketContractEventsContext,
-  NftMarketContractEvents
+  NftMarketContractSeconds,
+  NftMarketContractSecondsMethodNames,
+  NftMarketContractSecondsEventsContext,
+  NftMarketContractSecondsEvents
 >;
 
 export declare type EventFilter = {
@@ -54,20 +54,20 @@ export interface ContractCallOverrides {
    */
   gasLimit?: number;
 }
-export type NftMarketContractEvents =
+export type NftMarketContractSecondsEvents =
   | 'Approval'
   | 'ApprovalForAll'
   | 'NftItemCreated'
   | 'OwnershipTransferred'
   | 'Transfer';
-export interface NftMarketContractEventsContext {
+export interface NftMarketContractSecondsEventsContext {
   Approval(...parameters: any): EventFilter;
   ApprovalForAll(...parameters: any): EventFilter;
   NftItemCreated(...parameters: any): EventFilter;
   OwnershipTransferred(...parameters: any): EventFilter;
   Transfer(...parameters: any): EventFilter;
 }
-export type NftMarketContractMethodNames =
+export type NftMarketContractSecondsMethodNames =
   | 'new'
   | '_idToNftItem'
   | 'approve'
@@ -85,18 +85,18 @@ export type NftMarketContractMethodNames =
   | 'symbol'
   | 'transferFrom'
   | 'transferOwnership'
-  | 'setMaxFoxysMistico'
-  | 'setMaxFoxysMagico'
-  | 'setMaxFoxysGlorioso'
-  | 'setMaxFoxysLegendario'
-  | 'setMaxFoxysEpico'
-  | 'setMaxFoxysInmortal'
-  | 'setMaxFoxysMisticoWoman'
-  | 'setMaxFoxysMagicoWoman'
-  | 'setMaxFoxysGloriosoWoman'
-  | 'setMaxFoxysLegendarioWoman'
-  | 'setMaxFoxysEpicoWoman'
-  | 'setMaxFoxysInmortalWoman'
+  | 'setMaxAlufisMistico'
+  | 'setMaxAlufisMagico'
+  | 'setMaxAlufisGlorioso'
+  | 'setMaxAlufisLegendario'
+  | 'setMaxAlufisEpico'
+  | 'setMaxAlufisInmortal'
+  | 'setMaxAlufisMisticoWoman'
+  | 'setMaxAlufisMagicoWoman'
+  | 'setMaxAlufisGloriosoWoman'
+  | 'setMaxAlufisLegendarioWoman'
+  | 'setMaxAlufisEpicoWoman'
+  | 'setMaxAlufisInmortalWoman'
   | 'withdraw'
   | 'listedItemsCount'
   | 'totalSupply'
@@ -105,18 +105,18 @@ export type NftMarketContractMethodNames =
   | 'tokenOfOwnerByIndex'
   | 'getAllNftsOnSale'
   | 'getOwnedNfts'
-  | 'foxyBuyMistico'
-  | 'foxyBuyMagico'
-  | 'foxyBuyGlorioso'
-  | 'foxyBuyLegendario'
-  | 'foxyBuyEpico'
-  | 'FoxyBuyInmortal'
-  | 'foxyBuyMisticoWoman'
-  | 'foxyBuyMagicoWoman'
-  | 'foxyBuyGloriosoWoman'
-  | 'foxyBuyLegendarioWoman'
-  | 'foxyBuyEpicoWoman'
-  | 'FoxyBuyInmortalWoman'
+  | 'AlufisBuyMistico'
+  | 'AlufisBuyMagico'
+  | 'AlufisBuyGlorioso'
+  | 'AlufisBuyLegendario'
+  | 'AlufisBuyEpico'
+  | 'AlufisBuyInmortal'
+  | 'AlufisBuyMisticoWoman'
+  | 'AlufisBuyMagicoWoman'
+  | 'AlufisBuyGloriosoWoman'
+  | 'AlufisBuyLegendarioWoman'
+  | 'AlufisBuyEpicoWoman'
+  | 'AlufisBuyInmortalWoman'
   | 'tokenURI'
   | 'buyNft'
   | 'cancellSellNft'
@@ -167,7 +167,7 @@ export interface NftitemResponse {
   isListed: boolean;
   3: boolean;
 }
-export interface NftMarketContract {
+export interface NftMarketContractSeconds {
   /**
    * Payable: false
    * Constant: false
@@ -362,10 +362,10 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMaxFoxy Type: uint256, Indexed: false
+   * @param newMaxAlufis Type: uint256, Indexed: false
    */
-  setMaxFoxysMistico(
-    newMaxFoxy: BigNumberish,
+  setMaxAlufisMistico(
+    newMaxAlufis: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -373,10 +373,10 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMaxFoxy Type: uint256, Indexed: false
+   * @param newMaxAlufi Type: uint256, Indexed: false
    */
-  setMaxFoxysMagico(
-    newMaxFoxy: BigNumberish,
+  setMaxAlufisMagico(
+    newMaxAlufi: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -384,10 +384,10 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMaxFoxy Type: uint256, Indexed: false
+   * @param newMaxAlufi Type: uint256, Indexed: false
    */
-  setMaxFoxysGlorioso(
-    newMaxFoxy: BigNumberish,
+  setMaxAlufisGlorioso(
+    newMaxAlufi: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -395,10 +395,10 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMaxFoxy Type: uint256, Indexed: false
+   * @param newMaxAlufi Type: uint256, Indexed: false
    */
-  setMaxFoxysLegendario(
-    newMaxFoxy: BigNumberish,
+  setMaxAlufisLegendario(
+    newMaxAlufi: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -406,10 +406,10 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMaxFoxy Type: uint256, Indexed: false
+   * @param newMaxAlufi Type: uint256, Indexed: false
    */
-  setMaxFoxysEpico(
-    newMaxFoxy: BigNumberish,
+  setMaxAlufisEpico(
+    newMaxAlufi: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -417,10 +417,10 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMaxFoxy Type: uint256, Indexed: false
+   * @param newMaxAlufi Type: uint256, Indexed: false
    */
-  setMaxFoxysInmortal(
-    newMaxFoxy: BigNumberish,
+  setMaxAlufisInmortal(
+    newMaxAlufi: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -428,10 +428,10 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMaxFoxy Type: uint256, Indexed: false
+   * @param newMaxAlufi Type: uint256, Indexed: false
    */
-  setMaxFoxysMisticoWoman(
-    newMaxFoxy: BigNumberish,
+  setMaxAlufisMisticoWoman(
+    newMaxAlufi: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -439,10 +439,10 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMaxFoxy Type: uint256, Indexed: false
+   * @param newMaxAlufi Type: uint256, Indexed: false
    */
-  setMaxFoxysMagicoWoman(
-    newMaxFoxy: BigNumberish,
+  setMaxAlufisMagicoWoman(
+    newMaxAlufi: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -450,10 +450,10 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMaxFoxy Type: uint256, Indexed: false
+   * @param newMaxAlufi Type: uint256, Indexed: false
    */
-  setMaxFoxysGloriosoWoman(
-    newMaxFoxy: BigNumberish,
+  setMaxAlufisGloriosoWoman(
+    newMaxAlufi: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -461,10 +461,10 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMaxFoxy Type: uint256, Indexed: false
+   * @param newMaxAlufi Type: uint256, Indexed: false
    */
-  setMaxFoxysLegendarioWoman(
-    newMaxFoxy: BigNumberish,
+  setMaxAlufisLegendarioWoman(
+    newMaxAlufi: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -472,10 +472,10 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMaxFoxy Type: uint256, Indexed: false
+   * @param newMaxAlufi Type: uint256, Indexed: false
    */
-  setMaxFoxysEpicoWoman(
-    newMaxFoxy: BigNumberish,
+  setMaxAlufisEpicoWoman(
+    newMaxAlufi: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -483,10 +483,10 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMaxFoxy Type: uint256, Indexed: false
+   * @param newMaxAlufi Type: uint256, Indexed: false
    */
-  setMaxFoxysInmortalWoman(
-    newMaxFoxy: BigNumberish,
+  setMaxAlufisInmortalWoman(
+    newMaxAlufi: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -570,7 +570,7 @@ export interface NftMarketContract {
    * Type: function
    * @param amount Type: uint256, Indexed: false
    */
-  foxyBuyMistico(
+  AlufisBuyMistico(
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
@@ -581,7 +581,7 @@ export interface NftMarketContract {
    * Type: function
    * @param amount Type: uint256, Indexed: false
    */
-  foxyBuyMagico(
+  AlufisBuyMagico(
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
@@ -592,7 +592,7 @@ export interface NftMarketContract {
    * Type: function
    * @param amount Type: uint256, Indexed: false
    */
-  foxyBuyGlorioso(
+  AlufisBuyGlorioso(
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
@@ -603,7 +603,7 @@ export interface NftMarketContract {
    * Type: function
    * @param amount Type: uint256, Indexed: false
    */
-  foxyBuyLegendario(
+  AlufisBuyLegendario(
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
@@ -614,7 +614,7 @@ export interface NftMarketContract {
    * Type: function
    * @param amount Type: uint256, Indexed: false
    */
-  foxyBuyEpico(
+  AlufisBuyEpico(
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
@@ -625,7 +625,7 @@ export interface NftMarketContract {
    * Type: function
    * @param amount Type: uint256, Indexed: false
    */
-  FoxyBuyInmortal(
+  AlufisBuyInmortal(
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
@@ -636,7 +636,7 @@ export interface NftMarketContract {
    * Type: function
    * @param amount Type: uint256, Indexed: false
    */
-  foxyBuyMisticoWoman(
+  AlufisBuyMisticoWoman(
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
@@ -647,7 +647,7 @@ export interface NftMarketContract {
    * Type: function
    * @param amount Type: uint256, Indexed: false
    */
-  foxyBuyMagicoWoman(
+  AlufisBuyMagicoWoman(
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
@@ -658,7 +658,7 @@ export interface NftMarketContract {
    * Type: function
    * @param amount Type: uint256, Indexed: false
    */
-  foxyBuyGloriosoWoman(
+  AlufisBuyGloriosoWoman(
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
@@ -669,7 +669,7 @@ export interface NftMarketContract {
    * Type: function
    * @param amount Type: uint256, Indexed: false
    */
-  foxyBuyLegendarioWoman(
+  AlufisBuyLegendarioWoman(
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
@@ -680,7 +680,7 @@ export interface NftMarketContract {
    * Type: function
    * @param amount Type: uint256, Indexed: false
    */
-  foxyBuyEpicoWoman(
+  AlufisBuyEpicoWoman(
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
@@ -691,7 +691,7 @@ export interface NftMarketContract {
    * Type: function
    * @param amount Type: uint256, Indexed: false
    */
-  FoxyBuyInmortalWoman(
+  AlufisBuyInmortalWoman(
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;

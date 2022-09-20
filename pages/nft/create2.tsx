@@ -7,15 +7,16 @@ import Link from 'next/link'
 import { ChangeEvent, useState } from 'react';
 import { NftMeta, PinataRes } from '@_types/nft';
 import axios from 'axios';
-import { useWebs3 } from '@providers/web3/indexx';
+import { useWeb3 } from '@providers/web3/index';
 import { ethers } from 'ethers';
+
 
 
 const ALLOWED_FIELDS = ["name", "description", "image", "attributes"];
 
 const NftCreate: NextPage = () => {
  
-  const {ethereum, contract } = useWebs3();
+  const {ethereum, contract } = useWeb3();
   const [nftURI, setNftURI] = useState("");
   const [price, setPrice] = useState("");
   const [hasURI, setHasURI] = useState(false);
@@ -99,34 +100,33 @@ const NftCreate: NextPage = () => {
   }
 
 
-  const createAlufiMistico = async () => {
+  const createFoxyMistico = async () => {
     try {
-      const tx = await contract?.AlufisBuyMistico(
+      const tx = await contract?.foxyBuyMistico(
         parseFloat("2").toString(),
         {
           value: ethers.utils.parseEther(0.25.toString())
         }
       );
-
-     await tx?.wait();
-      alert("AlufisMistico was created!");
+      
+      await tx?.wait();
+      alert("Foxy Mistico was created!");
     } catch (e: any) {
       console.error(e.message);
     }
   }
 
-  const createAlufiMagico = async () => {
+  const createFoxyMagico = async () => {
     try {
-      const tx = await contract?.AlufisBuyMagico(
+      const tx = await contract?.foxyBuyMagico(
         parseFloat("2").toString(),
         {
           value: ethers.utils.parseEther(0.35.toString())
         }
       );
       
-
       await tx?.wait();
-      alert("AlufisMagico was created!");
+      alert("FoxyMagico was created!");
     } catch (e: any) {
       console.error(e.message);
     }
@@ -234,19 +234,19 @@ const NftCreate: NextPage = () => {
                   <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                   
                     <button
-                      onClick={createAlufiMistico}
+                      onClick={createFoxyMistico}
                       type="button"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                      Mint Alufi mistico
+                      Mint Foxy mistico
                     </button>
 
                     <button
-                      onClick={createAlufiMagico}
+                      onClick={createFoxyMagico}
                       type="button"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                      Mint Alufi magico
+                      Mint Foxy magico
                     </button>
 
                   </div>

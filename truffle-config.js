@@ -26,16 +26,22 @@ module.exports = {
         keys.INFURA_ROPSTEN_URL,       
       ),
       network_id: 3,
-      gas: 5500000,
-      gasPrice: 20000000000,
-      confirmations: 2,
+      gas:6721975,
+      gasPrice:20000000000,
+      confirmations: 3,
       timeoutBlocks:200
     }
   },
 
   compilers: {
     solc: {
-      version: "0.8.16",       
+      version: "0.8.16",
+      settings: {
+        optimizer: {
+        enabled: true, // Default: false
+        runs: 1000 // Default: 200
+        }
+        }       
     }
   },
 

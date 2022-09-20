@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract NftMarket is ERC721URIStorage, Ownable {
+contract NftMarketSeconds is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     using Strings for uint256;
     using Address for address;
@@ -24,33 +24,34 @@ contract NftMarket is ERC721URIStorage, Ownable {
     uint256 private listingPriceLegendario = 0.75 ether;
     uint256 private listingPriceEpico = 1.00 ether;
     uint256 private listingPriceInmortal = 1.25 ether;
-    //hombres
-    uint256 private TokenIdFoxyMistico = 0;
-    uint256 private TokenIdFoxyMagico = 8;  //4000
-    uint256 private TokenIdFoxyGlorioso = 8000;
-    uint256 private TokenIdFoxyLegendario = 12000;
-    uint256 private TokenIdFoxyEpico = 16000;
-    uint256 private TokenIdFoxyInmortal = 200000;
+     //hombres
+    uint256 private TokenIdAlufisMistico = 0; //96
+    uint256 private TokenIdAlufisMagico = 8; //104
+    uint256 private TokenIdAlufisGlorioso = 112;
+    uint256 private TokenIdAlufisLegendario = 120;
+    uint256 private TokenIdAlufisEpico = 128;
+    uint256 private TokenIdAlufisInmortal = 136;
     //mujeres
-    uint256 private TokenIdFoxyMisticoWoman = 24000;
-    uint256 private TokenIdFoxyMagicoWoman = 28000;
-    uint256 private TokenIdFoxyGloriosoWoman = 32000;
-    uint256 private TokenIdFoxyLegendarioWoman = 36000;
-    uint256 private TokenIdFoxyEpicoWoman = 40000;  
-    uint256 private TokenIdFoxyInmortalWoman = 44000;
+    uint256 private TokenIdAlufisMisticoWoman = 144;
+    uint256 private TokenIdAlufisMagicoWoman = 152;
+    uint256 private TokenIdAlufisGloriosoWoman = 160;
+    uint256 private TokenIdAlufisLegendarioWoman = 168;
+    uint256 private TokenIdAlufisEpicoWoman = 176;
+    uint256 private TokenIdAlufisInmortalWoman = 184;
 
-    uint256 private maxFoxyMistico = 7; //2000
-    uint256 private maxFoxyMagico = 15; //6000
-    uint256 private maxFoxyGlorioso= 10000;
-    uint256 private maxFoxyLegendario= 14000;
-    uint256 private maxFoxyEpico= 18000;
-    uint256 private maxFoxyInmortal= 22000;
-    uint256 private maxFoxyMisticoWoman = 26000;
-    uint256 private maxFoxyMagicoWoman= 30000;
-    uint256 private maxFoxyGloriosoWoman= 34000;
-    uint256 private maxFoxyLegendarioWoman= 380000;
-    uint256 private maxFoxyEpicoWoman= 42000;
-    uint256 private maxFoxyInmortalWoman= 46000;
+    uint256 private maxAlufiMistico = 7;
+    uint256 private maxAlufiMagico = 15;
+    uint256 private maxAlufiGlorioso= 10000;
+    uint256 private maxAlufiLegendario= 10000;
+    uint256 private maxAlufiEpico= 10000;
+    uint256 private maxAlufiInmortal= 10000;
+    uint256 private maxAlufiMisticoWoman = 15;
+    uint256 private maxAlufiMagicoWoman= 31;
+    uint256 private maxAlufiGloriosoWoman= 12000;
+    uint256 private maxAlufiLegendarioWoman= 12000;
+    uint256 private maxAlufiEpicoWoman= 12000;
+    uint256 private maxAlufiInmortalWoman= 12000;
+
 
     Counters.Counter private _listedItems;
     Counters.Counter private _tokenIds;
@@ -76,69 +77,68 @@ contract NftMarket is ERC721URIStorage, Ownable {
         bool isListed
     );
 
-    constructor() ERC721("ElfNFT", "ENFT") {
+    constructor() ERC721("SCNFT", "SNFT") {
        
     }
 
-     function setMaxFoxysMistico(uint newMaxFoxy) external onlyOwner {
-     require(newMaxFoxy > maxFoxyMistico, "the amount of foxys must be greater than the existing one");
-     maxFoxyMistico = newMaxFoxy;
+    function setMaxAlufisMistico(uint newMaxAlufis) external onlyOwner {
+     require(newMaxAlufis > maxAlufiMistico, "the amount of Alufis must be greater than the existing one");
+     maxAlufiMistico = newMaxAlufis;
     }
 
-    function setMaxFoxysMagico(uint newMaxFoxy) external onlyOwner {
-     require(newMaxFoxy > maxFoxyMagico, "the amount of foxys must be greater than the existing one");
-     maxFoxyMagico = newMaxFoxy;
-
+    function setMaxAlufisMagico(uint newMaxAlufi) external onlyOwner {
+     require(newMaxAlufi > maxAlufiMagico, "the amount of Alufis must be greater than the existing one");
+     maxAlufiMagico = newMaxAlufi;
     }
 
-    function setMaxFoxysGlorioso(uint newMaxFoxy) external onlyOwner {
-     require(newMaxFoxy > maxFoxyGlorioso, "the amount of foxys must be greater than the existing one");
-     maxFoxyGlorioso = newMaxFoxy;
+    function setMaxAlufisGlorioso(uint newMaxAlufi) external onlyOwner {
+     require(newMaxAlufi > maxAlufiGlorioso, "the amount of Alufis must be greater than the existing one");
+     maxAlufiGlorioso = newMaxAlufi;
     }
 
-    function setMaxFoxysLegendario(uint newMaxFoxy) external onlyOwner {
-     require(newMaxFoxy > maxFoxyLegendario, "the amount of foxys must be greater than the existing one");
-     maxFoxyLegendario = newMaxFoxy;
+    function setMaxAlufisLegendario(uint newMaxAlufi) external onlyOwner {
+     require(newMaxAlufi > maxAlufiLegendario, "the amount of Alufis must be greater than the existing one");
+     maxAlufiLegendario = newMaxAlufi;
     }
 
-    function setMaxFoxysEpico(uint newMaxFoxy) external onlyOwner {
-     require(newMaxFoxy > maxFoxyEpico, "the amount of foxys must be greater than the existing one");
-     maxFoxyEpico = newMaxFoxy;
+    function setMaxAlufisEpico(uint newMaxAlufi) external onlyOwner {
+     require(newMaxAlufi > maxAlufiEpico, "the amount of Alufis must be greater than the existing one");
+     maxAlufiEpico = newMaxAlufi;
     }
 
-    function setMaxFoxysInmortal(uint newMaxFoxy) external onlyOwner {
-     require(newMaxFoxy > maxFoxyInmortal, "the amount of foxys must be greater than the existing one");
-     maxFoxyInmortal = newMaxFoxy;
+    function setMaxAlufisInmortal(uint newMaxAlufi) external onlyOwner {
+     require(newMaxAlufi > maxAlufiInmortal, "the amount of Alufis must be greater than the existing one");
+     maxAlufiInmortal = newMaxAlufi;
     }
 
-    function setMaxFoxysMisticoWoman(uint newMaxFoxy) external onlyOwner {
-     require(newMaxFoxy > maxFoxyMisticoWoman, "the amount of foxysWoman must be greater than the existing one");
-     maxFoxyMisticoWoman = newMaxFoxy;
+    function setMaxAlufisMisticoWoman(uint newMaxAlufi) external onlyOwner {
+     require(newMaxAlufi > maxAlufiMisticoWoman, "the amount of AlufisWoman must be greater than the existing one");
+     maxAlufiMisticoWoman = newMaxAlufi;
     }
 
-    function setMaxFoxysMagicoWoman(uint newMaxFoxy) external onlyOwner {
-     require(newMaxFoxy > maxFoxyMagicoWoman, "the amount of foxysWoman must be greater than the existing one");
-     maxFoxyMagicoWoman = newMaxFoxy;
+    function setMaxAlufisMagicoWoman(uint newMaxAlufi) external onlyOwner {
+     require(newMaxAlufi > maxAlufiMagicoWoman, "the amount of AlufisWoman must be greater than the existing one");
+     maxAlufiMagicoWoman = newMaxAlufi;
     }
 
-    function setMaxFoxysGloriosoWoman(uint newMaxFoxy) external onlyOwner {
-     require(newMaxFoxy > maxFoxyGloriosoWoman, "the amount of foxysWoman must be greater than the existing one");
-     maxFoxyGloriosoWoman = newMaxFoxy;
+    function setMaxAlufisGloriosoWoman(uint newMaxAlufi) external onlyOwner {
+     require(newMaxAlufi > maxAlufiGloriosoWoman, "the amount of AlufisWoman must be greater than the existing one");
+     maxAlufiGloriosoWoman = newMaxAlufi;
     }
 
-    function setMaxFoxysLegendarioWoman(uint newMaxFoxy) external onlyOwner {
-     require(newMaxFoxy > maxFoxyLegendarioWoman, "the amount of foxysWoman must be greater than the existing one");
-     maxFoxyLegendarioWoman = newMaxFoxy;
+    function setMaxAlufisLegendarioWoman(uint newMaxAlufi) external onlyOwner {
+     require(newMaxAlufi > maxAlufiLegendarioWoman, "the amount of AlufisWoman must be greater than the existing one");
+     maxAlufiLegendarioWoman = newMaxAlufi;
     }
 
-    function setMaxFoxysEpicoWoman(uint newMaxFoxy) external onlyOwner {
-     require(newMaxFoxy > maxFoxyEpicoWoman, "the amount of foxysWoman must be greater than the existing one");
-     maxFoxyEpicoWoman = newMaxFoxy;
+    function setMaxAlufisEpicoWoman(uint newMaxAlufi) external onlyOwner {
+     require(newMaxAlufi > maxAlufiEpicoWoman, "the amount of AlufisWoman must be greater than the existing one");
+     maxAlufiEpicoWoman = newMaxAlufi;
     }
 
-    function setMaxFoxysInmortalWoman(uint newMaxFoxy) external onlyOwner {
-     require(newMaxFoxy > maxFoxyInmortalWoman, "the amount of foxysWoman must be greater than the existing one");
-     maxFoxyInmortalWoman = newMaxFoxy;
+    function setMaxAlufisInmortalWoman(uint newMaxAlufi) external onlyOwner {
+     require(newMaxAlufi > maxAlufiInmortalWoman, "the amount of AlufisWoman must be greater than the existing one");
+     maxAlufiInmortalWoman = newMaxAlufi;
     }
 
     function withdraw() external onlyOwner{
@@ -149,9 +149,8 @@ contract NftMarket is ERC721URIStorage, Ownable {
      
     }
 
-
     function listedItemsCount() public view returns (uint256) {
-        return _listedItems.current();
+     return _listedItems.current();
     }
 
     function totalSupply() public view returns (uint256) {
@@ -213,7 +212,7 @@ contract NftMarket is ERC721URIStorage, Ownable {
     }
   
 
-    function foxyBuyMistico(uint amount)
+    function AlufisBuyMistico(uint amount)
         public
         payable
         returns (uint256)
@@ -224,17 +223,17 @@ contract NftMarket is ERC721URIStorage, Ownable {
             "Price must be equal to listing price"
         );
 
-        require(TokenIdFoxyMistico < maxFoxyMistico, "Max FoxyMistico Nfts Minted");     
+        require(TokenIdAlufisMistico < maxAlufiMistico, "Max AlufisMistico Nfts Minted");     
          for( uint i = 0; i < amount; ++i ){
-        _safeMint(msg.sender, TokenIdFoxyMistico);
-        _createNftItem(TokenIdFoxyMistico);
-         TokenIdFoxyMistico += 1;
+        _safeMint(msg.sender, TokenIdAlufisMistico);
+        _createNftItem(TokenIdAlufisMistico);
+         TokenIdAlufisMistico += 1;
      }      
            
-        return TokenIdFoxyMistico;
+        return TokenIdAlufisMistico;
     }
 
-    function foxyBuyMagico(uint amount)
+    function AlufisBuyMagico(uint amount)
         public
         payable
         returns (uint256)
@@ -245,17 +244,17 @@ contract NftMarket is ERC721URIStorage, Ownable {
             "Price must be equal to listing price"
         );       
 
-        require(TokenIdFoxyMagico < maxFoxyMagico, "Max FoxyMagico Nfts Minted");     
+        require(TokenIdAlufisMagico < maxAlufiMagico, "Max AlufisMagico Nfts Minted");     
          for( uint i = 0; i < amount; ++i ){
-        _safeMint(msg.sender, TokenIdFoxyMagico);
-        _createNftItem(TokenIdFoxyMagico);
-        TokenIdFoxyMagico += 1;
+        _safeMint(msg.sender, TokenIdAlufisMagico);
+        _createNftItem(TokenIdAlufisMagico);
+        TokenIdAlufisMagico += 1;
      }      
            
-        return TokenIdFoxyMagico;
+        return TokenIdAlufisMagico;
     }
 
-    function foxyBuyGlorioso(uint amount)
+    function AlufisBuyGlorioso(uint amount)
         public
         payable
         returns (uint256)
@@ -266,17 +265,17 @@ contract NftMarket is ERC721URIStorage, Ownable {
             "Price must be equal to listing price"
         );       
 
-        require(TokenIdFoxyGlorioso < maxFoxyGlorioso, "Max FoxyGlorioso Nfts Minted");     
+        require(TokenIdAlufisGlorioso < maxAlufiGlorioso, "Max AlufisGlorioso Nfts Minted");     
          for( uint i = 0; i < amount; ++i ){
-        _safeMint(msg.sender, TokenIdFoxyGlorioso);
-        _createNftItem(TokenIdFoxyGlorioso);
-        TokenIdFoxyGlorioso += 1;
+        _safeMint(msg.sender, TokenIdAlufisGlorioso);
+        _createNftItem(TokenIdAlufisGlorioso);
+        TokenIdAlufisGlorioso += 1;
      }      
            
-        return TokenIdFoxyGlorioso;
+        return TokenIdAlufisGlorioso;
     }
 
-    function foxyBuyLegendario (uint amount)
+    function AlufisBuyLegendario (uint amount)
         public
         payable
         returns (uint256)
@@ -287,17 +286,17 @@ contract NftMarket is ERC721URIStorage, Ownable {
             "Price must be equal to listing price"
         );       
 
-        require(TokenIdFoxyLegendario < maxFoxyLegendario, "Max FoxyLegendario Nfts Minted");     
+        require(TokenIdAlufisLegendario < maxAlufiLegendario, "Max AlufisLegendario Nfts Minted");     
          for( uint i = 0; i < amount; ++i ){
-        _safeMint(msg.sender, TokenIdFoxyLegendario);
-        _createNftItem(TokenIdFoxyLegendario);
-        TokenIdFoxyLegendario += 1;
+        _safeMint(msg.sender, TokenIdAlufisLegendario);
+        _createNftItem(TokenIdAlufisLegendario);
+        TokenIdAlufisLegendario += 1;
      }      
            
-        return TokenIdFoxyLegendario;
+        return TokenIdAlufisLegendario;
     }
 
-        function foxyBuyEpico(uint amount)
+        function AlufisBuyEpico(uint amount)
             public
             payable
             returns (uint256)
@@ -310,17 +309,17 @@ contract NftMarket is ERC721URIStorage, Ownable {
 
         
 
-        require(TokenIdFoxyEpico < maxFoxyEpico, "Max FoxyEpico Nfts Minted");     
+        require(TokenIdAlufisEpico < maxAlufiEpico, "Max AlufisEpico Nfts Minted");     
          for( uint i = 0; i < amount; ++i ){
-        _safeMint(msg.sender, TokenIdFoxyEpico);
-        _createNftItem(TokenIdFoxyEpico);
-        TokenIdFoxyLegendario += 1;
+        _safeMint(msg.sender, TokenIdAlufisEpico);
+        _createNftItem(TokenIdAlufisEpico);
+        TokenIdAlufisLegendario += 1;
         }      
             
-            return TokenIdFoxyEpico;
+            return TokenIdAlufisEpico;
         }
 
-        function FoxyBuyInmortal(uint amount)
+        function AlufisBuyInmortal(uint amount)
             public
             payable
             returns (uint256)
@@ -331,18 +330,18 @@ contract NftMarket is ERC721URIStorage, Ownable {
                 "Price must be equal to listing price"
             );
                      
-        require(TokenIdFoxyInmortal < maxFoxyInmortal, "Max FoxyInmortal Nfts Minted");     
+        require(TokenIdAlufisInmortal < maxAlufiInmortal, "Max AlufisInmortal Nfts Minted");     
          for( uint i = 0; i < amount; ++i ){
-        _safeMint(msg.sender, TokenIdFoxyInmortal);
-        _createNftItem(TokenIdFoxyInmortal);
-        TokenIdFoxyInmortal += 1;
+        _safeMint(msg.sender, TokenIdAlufisInmortal);
+        _createNftItem(TokenIdAlufisInmortal);
+        TokenIdAlufisInmortal += 1;
         }      
             
-            return TokenIdFoxyInmortal;
+            return TokenIdAlufisInmortal;
         }
 
 
-function foxyBuyMisticoWoman(uint amount)
+function AlufisBuyMisticoWoman(uint amount)
         public
         payable
         returns (uint256)
@@ -353,17 +352,17 @@ function foxyBuyMisticoWoman(uint amount)
             "Price must be equal to listing price"
         );
 
-        require(TokenIdFoxyMisticoWoman < maxFoxyMisticoWoman, "Max FoxyMistico Nfts Minted");     
+        require(TokenIdAlufisMisticoWoman < maxAlufiMisticoWoman, "Max AlufisMistico Nfts Minted");     
          for( uint i = 0; i < amount; ++i ){
-        _safeMint(msg.sender, TokenIdFoxyMisticoWoman);
-        _createNftItem(TokenIdFoxyMisticoWoman);
-         TokenIdFoxyMisticoWoman += 1;
+        _safeMint(msg.sender, TokenIdAlufisMisticoWoman);
+        _createNftItem(TokenIdAlufisMisticoWoman);
+         TokenIdAlufisMisticoWoman += 1;
      }      
            
-        return TokenIdFoxyMisticoWoman;
+        return TokenIdAlufisMisticoWoman;
     }
 
-    function foxyBuyMagicoWoman(uint amount)
+    function AlufisBuyMagicoWoman(uint amount)
         public
         payable
         returns (uint256)
@@ -374,17 +373,17 @@ function foxyBuyMisticoWoman(uint amount)
             "Price must be equal to listing price"
         );       
 
-        require(TokenIdFoxyMagicoWoman < maxFoxyMagicoWoman, "Max FoxyMagico Nfts Minted");     
+        require(TokenIdAlufisMagicoWoman < maxAlufiMagicoWoman, "Max AlufisMagico Nfts Minted");     
          for( uint i = 0; i < amount; ++i ){
-        _safeMint(msg.sender, TokenIdFoxyMagicoWoman);
-        _createNftItem(TokenIdFoxyMagicoWoman);
-        TokenIdFoxyMagicoWoman += 1;
+        _safeMint(msg.sender, TokenIdAlufisMagicoWoman);
+        _createNftItem(TokenIdAlufisMagicoWoman);
+        TokenIdAlufisMagicoWoman += 1;
      }      
            
-        return TokenIdFoxyMagicoWoman;
+        return TokenIdAlufisMagicoWoman;
     }
 
-    function foxyBuyGloriosoWoman(uint amount)
+    function AlufisBuyGloriosoWoman(uint amount)
         public
         payable
         returns (uint256)
@@ -395,17 +394,17 @@ function foxyBuyMisticoWoman(uint amount)
             "Price must be equal to listing price"
         );       
 
-        require(TokenIdFoxyGloriosoWoman < maxFoxyGloriosoWoman, "Max FoxyGlorioso Nfts Minted");     
+        require(TokenIdAlufisGloriosoWoman < maxAlufiGloriosoWoman, "Max AlufisGlorioso Nfts Minted");     
          for( uint i = 0; i < amount; ++i ){
-        _safeMint(msg.sender, TokenIdFoxyGloriosoWoman);
-        _createNftItem(TokenIdFoxyGloriosoWoman);
-        TokenIdFoxyGloriosoWoman += 1;
+        _safeMint(msg.sender, TokenIdAlufisGloriosoWoman);
+        _createNftItem(TokenIdAlufisGloriosoWoman);
+        TokenIdAlufisGloriosoWoman += 1;
      }      
            
-        return TokenIdFoxyGloriosoWoman;
+        return TokenIdAlufisGloriosoWoman;
     }
 
-       function foxyBuyLegendarioWoman (uint amount)
+       function AlufisBuyLegendarioWoman (uint amount)
         public
         payable
         returns (uint256)
@@ -416,17 +415,17 @@ function foxyBuyMisticoWoman(uint amount)
             "Price must be equal to listing price"
         );       
 
-        require(TokenIdFoxyLegendarioWoman < maxFoxyLegendarioWoman, "Max FoxyLegendario Nfts Minted");     
+        require(TokenIdAlufisLegendarioWoman < maxAlufiLegendarioWoman, "Max AlufisLegendario Nfts Minted");     
          for( uint i = 0; i < amount; ++i ){
-        _safeMint(msg.sender, TokenIdFoxyLegendarioWoman);
-        _createNftItem(TokenIdFoxyLegendarioWoman);
-        TokenIdFoxyLegendarioWoman += 1;
+        _safeMint(msg.sender, TokenIdAlufisLegendarioWoman);
+        _createNftItem(TokenIdAlufisLegendarioWoman);
+        TokenIdAlufisLegendarioWoman += 1;
      }      
            
-        return TokenIdFoxyLegendarioWoman;
+        return TokenIdAlufisLegendarioWoman;
     }
 
-        function foxyBuyEpicoWoman(uint amount)
+        function AlufisBuyEpicoWoman(uint amount)
             public
             payable
             returns (uint256)
@@ -439,35 +438,35 @@ function foxyBuyMisticoWoman(uint amount)
 
         
 
-        require(TokenIdFoxyEpicoWoman < maxFoxyEpicoWoman, "Max FoxyEpico Nfts Minted");     
+        require(TokenIdAlufisEpicoWoman < maxAlufiEpicoWoman, "Max AlufisEpico Nfts Minted");     
          for( uint i = 0; i < amount; ++i ){
-        _safeMint(msg.sender, TokenIdFoxyEpicoWoman);
-        _createNftItem(TokenIdFoxyEpicoWoman);
-        TokenIdFoxyLegendarioWoman += 1;
+        _safeMint(msg.sender, TokenIdAlufisEpicoWoman);
+        _createNftItem(TokenIdAlufisEpicoWoman);
+        TokenIdAlufisLegendarioWoman += 1;
         }      
             
-            return TokenIdFoxyEpicoWoman;
+            return TokenIdAlufisEpicoWoman;
         }
 
-        function FoxyBuyInmortalWoman(uint amount)
+        function AlufisBuyInmortalWoman(uint amount)
             public
             payable
             returns (uint256)
         {
             
-            require(
+      require(
                 msg.value == listingPriceInmortal,
                 "Price must be equal to listing price"
-            );
-                     
-        require(TokenIdFoxyInmortalWoman < maxFoxyInmortalWoman, "Max FoxyInmortal Nfts Minted");     
+          );
+             
+        require(TokenIdAlufisInmortalWoman < maxAlufiInmortalWoman, "Max AlufisInmortal Nfts Minted");     
          for( uint i = 0; i < amount; ++i ){
-        _safeMint(msg.sender, TokenIdFoxyInmortalWoman);
-        _createNftItem(TokenIdFoxyInmortalWoman);
-        TokenIdFoxyInmortalWoman += 1;
+        _safeMint(msg.sender, TokenIdAlufisInmortalWoman);
+        _createNftItem(TokenIdAlufisInmortalWoman);
+        TokenIdAlufisInmortalWoman += 1;
         }      
             
-         return TokenIdFoxyInmortalWoman;
+         return TokenIdAlufisInmortalWoman;
         }
 
     function tokenURI(uint256 tokenId)

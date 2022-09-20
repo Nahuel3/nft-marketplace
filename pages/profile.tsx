@@ -5,6 +5,7 @@ import { NextPage } from "next";
 import { BaseLayout } from "@ui";
 import { useOwnedNfts } from "@hooks/web3";
 import { useEffect, useState } from 'react';
+import { useWeb3 } from '@providers/web3';
 
 
 const tabs = [
@@ -18,7 +19,6 @@ function classNames(...classes: string[]) {
 
 
 const Profile: NextPage = () => {
-
 
   const [price, setPrice] = useState("");
   const { nfts } = useOwnedNfts();
