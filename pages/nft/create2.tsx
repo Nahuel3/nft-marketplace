@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { ChangeEvent, useState } from 'react';
 import { NftMeta, PinataRes } from '@_types/parteFoxy/nftFoxy';
 import axios from 'axios';
-import { useWeb3 } from '@providers/web3/index';
+import { useWeb3 } from '@providers/web3/Foxy/foxy';
 import { ethers } from 'ethers';
 
 
@@ -104,6 +104,7 @@ const NftCreate: NextPage = () => {
     try {
       const tx = await contract?.foxyBuyMistico(
         parseFloat("2").toString(),
+        parseFloat("pepe").toString(),
         {
           value: ethers.utils.parseEther(0.25.toString())
         }
@@ -120,6 +121,7 @@ const NftCreate: NextPage = () => {
     try {
       const tx = await contract?.foxyBuyMagico(
         parseFloat("2").toString(),
+        parseFloat("toto").toString(),
         {
           value: ethers.utils.parseEther(0.35.toString())
         }

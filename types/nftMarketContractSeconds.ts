@@ -69,9 +69,11 @@ export interface NftMarketContractSecondsEventsContext {
 }
 export type NftMarketContractSecondsMethodNames =
   | 'new'
+  | 'AllTokens'
   | '_idToNftItem'
   | 'approve'
   | 'balanceOf'
+  | 'baseURI'
   | 'getApproved'
   | 'isApprovedForAll'
   | 'name'
@@ -85,18 +87,7 @@ export type NftMarketContractSecondsMethodNames =
   | 'symbol'
   | 'transferFrom'
   | 'transferOwnership'
-  | 'setMaxAlufisMistico'
-  | 'setMaxAlufisMagico'
-  | 'setMaxAlufisGlorioso'
-  | 'setMaxAlufisLegendario'
-  | 'setMaxAlufisEpico'
-  | 'setMaxAlufisInmortal'
-  | 'setMaxAlufisMisticoWoman'
-  | 'setMaxAlufisMagicoWoman'
-  | 'setMaxAlufisGloriosoWoman'
-  | 'setMaxAlufisLegendarioWoman'
-  | 'setMaxAlufisEpicoWoman'
-  | 'setMaxAlufisInmortalWoman'
+  | 'setMaxNfts'
   | 'withdraw'
   | 'listedItemsCount'
   | 'totalSupply'
@@ -105,18 +96,7 @@ export type NftMarketContractSecondsMethodNames =
   | 'tokenOfOwnerByIndex'
   | 'getAllNftsOnSale'
   | 'getOwnedNfts'
-  | 'AlufisBuyMistico'
-  | 'AlufisBuyMagico'
-  | 'AlufisBuyGlorioso'
-  | 'AlufisBuyLegendario'
-  | 'AlufisBuyEpico'
-  | 'AlufisBuyInmortal'
-  | 'AlufisBuyMisticoWoman'
-  | 'AlufisBuyMagicoWoman'
-  | 'AlufisBuyGloriosoWoman'
-  | 'AlufisBuyLegendarioWoman'
-  | 'AlufisBuyEpicoWoman'
-  | 'AlufisBuyInmortalWoman'
+  | 'AquansBuy'
   | 'tokenURI'
   | 'buyNft'
   | 'cancellSellNft'
@@ -145,6 +125,15 @@ export interface TransferEventEmittedResponse {
   from: string;
   to: string;
   tokenId: BigNumberish;
+}
+export interface AllTokensResponse {
+  listingPrice: BigNumber;
+  0: BigNumber;
+  startTokenId: number;
+  1: number;
+  endTokenId: number;
+  2: number;
+  length: 3;
 }
 export interface _idToNftItemResponse {
   tokenId: BigNumber;
@@ -182,6 +171,17 @@ export interface NftMarketContractSeconds {
    * Type: function
    * @param parameter0 Type: uint256, Indexed: false
    */
+  AllTokens(
+    parameter0: BigNumberish,
+    overrides?: ContractCallOverrides
+  ): Promise<AllTokensResponse>;
+  /**
+   * Payable: false
+   * Constant: true
+   * StateMutability: view
+   * Type: function
+   * @param parameter0 Type: uint256, Indexed: false
+   */
   _idToNftItem(
     parameter0: BigNumberish,
     overrides?: ContractCallOverrides
@@ -210,6 +210,13 @@ export interface NftMarketContractSeconds {
     owner: string,
     overrides?: ContractCallOverrides
   ): Promise<BigNumber>;
+  /**
+   * Payable: false
+   * Constant: true
+   * StateMutability: view
+   * Type: function
+   */
+  baseURI(overrides?: ContractCallOverrides): Promise<string>;
   /**
    * Payable: false
    * Constant: true
@@ -362,131 +369,12 @@ export interface NftMarketContractSeconds {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMaxAlufis Type: uint256, Indexed: false
+   * @param newMax Type: uint16, Indexed: false
+   * @param tokenType Type: uint256, Indexed: false
    */
-  setMaxAlufisMistico(
-    newMaxAlufis: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxAlufi Type: uint256, Indexed: false
-   */
-  setMaxAlufisMagico(
-    newMaxAlufi: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxAlufi Type: uint256, Indexed: false
-   */
-  setMaxAlufisGlorioso(
-    newMaxAlufi: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxAlufi Type: uint256, Indexed: false
-   */
-  setMaxAlufisLegendario(
-    newMaxAlufi: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxAlufi Type: uint256, Indexed: false
-   */
-  setMaxAlufisEpico(
-    newMaxAlufi: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxAlufi Type: uint256, Indexed: false
-   */
-  setMaxAlufisInmortal(
-    newMaxAlufi: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxAlufi Type: uint256, Indexed: false
-   */
-  setMaxAlufisMisticoWoman(
-    newMaxAlufi: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxAlufi Type: uint256, Indexed: false
-   */
-  setMaxAlufisMagicoWoman(
-    newMaxAlufi: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxAlufi Type: uint256, Indexed: false
-   */
-  setMaxAlufisGloriosoWoman(
-    newMaxAlufi: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxAlufi Type: uint256, Indexed: false
-   */
-  setMaxAlufisLegendarioWoman(
-    newMaxAlufi: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxAlufi Type: uint256, Indexed: false
-   */
-  setMaxAlufisEpicoWoman(
-    newMaxAlufi: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxAlufi Type: uint256, Indexed: false
-   */
-  setMaxAlufisInmortalWoman(
-    newMaxAlufi: BigNumberish,
+  setMaxNfts(
+    newMax: BigNumberish,
+    tokenType: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -568,130 +456,11 @@ export interface NftMarketContractSeconds {
    * Constant: false
    * StateMutability: payable
    * Type: function
-   * @param amount Type: uint256, Indexed: false
+   * @param tokenType Type: uint256, Indexed: false
+   * @param amount Type: uint8, Indexed: false
    */
-  AlufisBuyMistico(
-    amount: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   */
-  AlufisBuyMagico(
-    amount: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   */
-  AlufisBuyGlorioso(
-    amount: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   */
-  AlufisBuyLegendario(
-    amount: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   */
-  AlufisBuyEpico(
-    amount: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   */
-  AlufisBuyInmortal(
-    amount: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   */
-  AlufisBuyMisticoWoman(
-    amount: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   */
-  AlufisBuyMagicoWoman(
-    amount: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   */
-  AlufisBuyGloriosoWoman(
-    amount: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   */
-  AlufisBuyLegendarioWoman(
-    amount: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   */
-  AlufisBuyEpicoWoman(
-    amount: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   */
-  AlufisBuyInmortalWoman(
+  AquansBuy(
+    tokenType: BigNumberish,
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;

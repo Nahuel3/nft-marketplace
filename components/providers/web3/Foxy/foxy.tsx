@@ -3,7 +3,7 @@ import { MetaMaskInpageProvider } from "@metamask/providers";
 import { NftMarketContract } from "@_types/nftMarketContract";
 import { ethers } from "ethers";
 import { createContext, FunctionComponent, useContext, useEffect, useState } from "react"
-import { createDefaultState, createWeb3State, loadContract, Web3State } from "./utils";
+import { createDefaultState, createWeb3State, loadContract, Web3State } from "./utilsFoxy";
 
 
 interface Props {

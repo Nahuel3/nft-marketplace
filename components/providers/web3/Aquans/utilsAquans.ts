@@ -1,7 +1,7 @@
-import { Web3Dependencies2 } from '@_types/parteAlufi/hookAlufi';
-import { setupHooks2, Web3Hookss } from './../../hooks/web3/setupHooks';
+import {SetupHooksAquans, Web3HooksAquans} from '../../../hooks/web3/setupHooks';
 import { MetaMaskInpageProvider } from "@metamask/providers";
 import { Contract, ethers, providers } from "ethers";
+import { Web3DependenciesAquans } from '@_types/parteAquans/hookAquans';
 
 
 declare global {
@@ -14,30 +14,30 @@ type Nullable<T> = {
   [P in keyof T]: T[P] | null;
 }
 
-export type Web3States = {
+export type Web3StatesAquans = {
     isLoading: boolean;  //true while loading web3State
-    hooks: Web3Hookss
-} & Nullable<Web3Dependencies2>
+    hooks: Web3HooksAquans
+} & Nullable<Web3DependenciesAquans>
 
-export const createDefaultStates = () => {
+export const createDefaultStateAquans = () => {
     return {
       ethereum: null,
       provider: null,
       contract: null,
       isLoading: true,
-      hooks: setupHooks2({isLoading:true} as any)
+      hooks: SetupHooksAquans({isLoading:true} as any)
     }
 }   
 
-export const createWeb3States = ({
+export const createWeb3StateAquans = ({
   ethereum, provider, contract, isLoading
-}: Web3Dependencies2) => {
+}: Web3DependenciesAquans) => {
   return {
     ethereum,
     provider,
     contract,
     isLoading,
-    hooks: setupHooks2({ ethereum ,provider, contract, isLoading})
+    hooks: SetupHooksAquans({ ethereum ,provider, contract, isLoading})
   }
 }   
 

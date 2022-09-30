@@ -26,10 +26,11 @@ module.exports = {
         keys.INFURA_ROPSTEN_URL,       
       ),
       network_id: 3,
-      gas:6721975,
+      gas:5221975,
       gasPrice:20000000000,
       confirmations: 3,
-      timeoutBlocks:200
+      timeoutBlocks:200,
+      skipDryRun: true
     }
   },
 

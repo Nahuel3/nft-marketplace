@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract NftMarketSeconds is ERC721URIStorage, Ownable {
+contract NftMarketAquans is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     using Strings for uint256;
     using Address for address;
@@ -57,18 +57,12 @@ contract NftMarketSeconds is ERC721URIStorage, Ownable {
         AllTokens.push(GruopNft(0.45 ether, 16, 32));
     }
 
-    function setMaxNfts(uint16 newMaxEndTokenId, uint256 tokenType, uint16 newMaxStartTokenId) external onlyOwner {
-        GruopNft storage group = AllTokens[tokenType];
+    function setMaxNfts(uint16 newMax, uint256 tokenId) external onlyOwner {
         require(
-            newMaxEndTokenId > group.endTokenId,
+            newMax > AllTokens[tokenId].endTokenId,
             "the amount of nft must be greater than the existing one"
         );
-        require(
-            newMaxStartTokenId > group.startTokenId,
-            "the amount of nft must be greater than the existing one"
-        );
-        group.endTokenId = newMaxEndTokenId;
-        group.startTokenId = newMaxStartTokenId;
+        AllTokens[tokenId].endTokenId = newMax;
     }
 
     //    function setMaxAquansMagico(uint newMaxAquan) external onlyOwner {
@@ -194,7 +188,7 @@ contract NftMarketSeconds is ERC721URIStorage, Ownable {
         return items;
     }
 
-     function AquansBuy(uint256 tokenType, uint8 amount)
+    function AquansBuy(uint256 tokenType, uint8 amount)
         public
         payable
         returns (uint256)
@@ -211,11 +205,9 @@ contract NftMarketSeconds is ERC721URIStorage, Ownable {
             "Nft minted is max"
             );
 
-        require(amount > 0, "Invalid amount");
-
         for (uint256 i = 0; i < amount; ++i) {
-            _safeMint(msg.sender, group.startTokenId + i);
-            _createNftItem(group.startTokenId + i, tokenType);
+            _safeMint(msg.sender, group.startTokenId);
+            _createNftItem(group.startTokenId);
         }
         group.startTokenId += amount;
 
@@ -282,17 +274,17 @@ contract NftMarketSeconds is ERC721URIStorage, Ownable {
         _listedItems.increment();
     }
 
-    function _createNftItem(uint256 tokenId, uint256 tokenType) private {
+    function _createNftItem(uint256 tokenId) private {
         _idToNftItem[tokenId] = NftItem(
             tokenId,
-            AllTokens[tokenType].listingPrice,
+            AllTokens[tokenId].listingPrice,
             msg.sender,
             false
         );
 
         emit NftItemCreated(
             tokenId,
-            AllTokens[tokenType].listingPrice,
+            AllTokens[tokenId].listingPrice,
             msg.sender,
             false
         );

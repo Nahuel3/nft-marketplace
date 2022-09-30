@@ -1,8 +1,8 @@
 import { MetaMaskInpageProvider } from "@metamask/providers";
-import { NftMarketContractSeconds } from "@_types/nftMarketContractSeconds";
+import { NftMarketContractAquans } from "@_types/nftMarketContractAquans";
 import { ethers } from "ethers";
 import { createContext, FunctionComponent, useContext, useEffect, useState } from "react"
-import { createDefaultStates, createWeb3States, loadContract, Web3States } from "./utils2";
+import { createDefaultStateAquans, createWeb3StateAquans, loadContract, Web3StatesAquans } from "./utilsAquans";
 
 
 interface Props {
@@ -27,10 +27,10 @@ const removeGlobalListeners = (ethereum:MetaMaskInpageProvider) => {
 }
 
 
-const Web3Context = createContext<Web3States>(createDefaultStates());
+const Web3Context = createContext<Web3StatesAquans>(createDefaultStateAquans());
 
 const Web3Providers: FunctionComponent<Props> = ({ children }) => {
-  const [web3Api, setWeb3Api] = useState<Web3States>(createDefaultStates())
+  const [web3Api, setWeb3Api] = useState<Web3StatesAquans>(createDefaultStateAquans())
 
   useEffect(() => {
     async function initWeb3() {
@@ -38,22 +38,22 @@ const Web3Providers: FunctionComponent<Props> = ({ children }) => {
       try {
 
         const provider = new ethers.providers.Web3Provider(window.ethereum as any)
-        const contract = await loadContract("NftMarketSeconds", provider)
+        const contract = await loadContract("NftMarketAquans", provider)
 
         const signer = provider.getSigner();
         const signedContract = contract.connect(signer);
 
         setTimeout(() =>  setGlobalListeners(window.ethereum), 500);
 
-        setWeb3Api(createWeb3States({
+        setWeb3Api(createWeb3StateAquans({
           ethereum: window.ethereum,
           provider,
-          contract: signedContract as unknown as NftMarketContractSeconds,
+          contract: signedContract as unknown as NftMarketContractAquans,
           isLoading: false
         }))
       } catch (e:any) {
         console.error("please install web3 WAllet");
-        setWeb3Api((api) => createWeb3States({
+        setWeb3Api((api) => createWeb3StateAquans({
           ...api as any,
           isLoading: false,
         }))
@@ -75,12 +75,12 @@ const Web3Providers: FunctionComponent<Props> = ({ children }) => {
 
 }
 
-export function useWebs3() {
+export function useWebs3Aquans() {
   return useContext(Web3Context)
 }
 
-export function useHookss() {
-  const { hooks } = useWebs3();
+export function useHooksAquans() {
+  const { hooks } = useWebs3Aquans();
   return hooks
 }
 

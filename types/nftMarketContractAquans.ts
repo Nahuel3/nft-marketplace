@@ -8,10 +8,10 @@ import {
 import { EthersContractContextV5 } from 'ethereum-abi-types-generator';
 
 export type ContractContext = EthersContractContextV5<
-  NftMarketContract,
-  NftMarketContractMethodNames,
-  NftMarketContractEventsContext,
-  NftMarketContractEvents
+  NftMarketContractAquans,
+  NftMarketContractAquansMethodNames,
+  NftMarketContractAquansEventsContext,
+  NftMarketContractAquansEvents
 >;
 
 export declare type EventFilter = {
@@ -54,38 +54,26 @@ export interface ContractCallOverrides {
    */
   gasLimit?: number;
 }
-export type NftMarketContractEvents =
+export type NftMarketContractAquansEvents =
   | 'Approval'
   | 'ApprovalForAll'
   | 'NftItemCreated'
   | 'OwnershipTransferred'
   | 'Transfer';
-export interface NftMarketContractEventsContext {
+export interface NftMarketContractAquansEventsContext {
   Approval(...parameters: any): EventFilter;
   ApprovalForAll(...parameters: any): EventFilter;
   NftItemCreated(...parameters: any): EventFilter;
   OwnershipTransferred(...parameters: any): EventFilter;
   Transfer(...parameters: any): EventFilter;
 }
-export type NftMarketContractMethodNames =
+export type NftMarketContractAquansMethodNames =
   | 'new'
-  | '_GruopFoxy'
+  | 'AllTokens'
   | '_idToNftItem'
   | 'approve'
   | 'balanceOf'
   | 'baseURI'
-  | 'foxyEpico'
-  | 'foxyEpicoWoman'
-  | 'foxyGlorioso'
-  | 'foxyGloriosoWoman'
-  | 'foxyInmortal'
-  | 'foxyInmortalWoman'
-  | 'foxyLegendario'
-  | 'foxyLegendarioWoman'
-  | 'foxyMagico'
-  | 'foxyMagicoWoman'
-  | 'foxyMistico'
-  | 'foxyMisticoWoman'
   | 'getApproved'
   | 'isApprovedForAll'
   | 'name'
@@ -99,18 +87,7 @@ export type NftMarketContractMethodNames =
   | 'symbol'
   | 'transferFrom'
   | 'transferOwnership'
-  | 'setMaxFoxysMistico'
-  | 'setMaxFoxysMagico'
-  | 'setMaxFoxysGlorioso'
-  | 'setMaxFoxysLegendario'
-  | 'setMaxFoxysEpico'
-  | 'setMaxFoxysInmortal'
-  | 'setMaxFoxysMisticoWoman'
-  | 'setMaxFoxysMagicoWoman'
-  | 'setMaxFoxysGloriosoWoman'
-  | 'setMaxFoxysLegendarioWoman'
-  | 'setMaxFoxysEpicoWoman'
-  | 'setMaxFoxysInmortalWoman'
+  | 'setMaxNfts'
   | 'withdraw'
   | 'listedItemsCount'
   | 'totalSupply'
@@ -119,12 +96,7 @@ export type NftMarketContractMethodNames =
   | 'tokenOfOwnerByIndex'
   | 'getAllNftsOnSale'
   | 'getOwnedNfts'
-  | 'foxyBuyMistico'
-  | 'foxyBuyMagico'
-  | 'foxyBuyGlorioso'
-  | 'foxyBuyLegendario'
-  | 'foxyBuyEpico'
-  | 'FoxyBuyInmortal'
+  | 'AquansBuy'
   | 'tokenURI'
   | 'buyNft'
   | 'cancellSellNft'
@@ -154,16 +126,14 @@ export interface TransferEventEmittedResponse {
   to: string;
   tokenId: BigNumberish;
 }
-export interface _GruopFoxyResponse {
-  listingPriceMistico: BigNumber;
+export interface AllTokensResponse {
+  listingPrice: BigNumber;
   0: BigNumber;
   startTokenId: number;
   1: number;
   endTokenId: number;
   2: number;
-  razaNft: string;
-  3: string;
-  length: 4;
+  length: 3;
 }
 export interface _idToNftItemResponse {
   tokenId: BigNumber;
@@ -176,138 +146,6 @@ export interface _idToNftItemResponse {
   3: boolean;
   length: 4;
 }
-export interface FoxyEpicoResponse {
-  listingPriceMistico: BigNumber;
-  0: BigNumber;
-  startTokenId: number;
-  1: number;
-  endTokenId: number;
-  2: number;
-  razaNft: string;
-  3: string;
-  length: 4;
-}
-export interface FoxyEpicoWomanResponse {
-  listingPriceMistico: BigNumber;
-  0: BigNumber;
-  startTokenId: number;
-  1: number;
-  endTokenId: number;
-  2: number;
-  razaNft: string;
-  3: string;
-  length: 4;
-}
-export interface FoxyGloriosoResponse {
-  listingPriceMistico: BigNumber;
-  0: BigNumber;
-  startTokenId: number;
-  1: number;
-  endTokenId: number;
-  2: number;
-  razaNft: string;
-  3: string;
-  length: 4;
-}
-export interface FoxyGloriosoWomanResponse {
-  listingPriceMistico: BigNumber;
-  0: BigNumber;
-  startTokenId: number;
-  1: number;
-  endTokenId: number;
-  2: number;
-  razaNft: string;
-  3: string;
-  length: 4;
-}
-export interface FoxyInmortalResponse {
-  listingPriceMistico: BigNumber;
-  0: BigNumber;
-  startTokenId: number;
-  1: number;
-  endTokenId: number;
-  2: number;
-  razaNft: string;
-  3: string;
-  length: 4;
-}
-export interface FoxyInmortalWomanResponse {
-  listingPriceMistico: BigNumber;
-  0: BigNumber;
-  startTokenId: number;
-  1: number;
-  endTokenId: number;
-  2: number;
-  razaNft: string;
-  3: string;
-  length: 4;
-}
-export interface FoxyLegendarioResponse {
-  listingPriceMistico: BigNumber;
-  0: BigNumber;
-  startTokenId: number;
-  1: number;
-  endTokenId: number;
-  2: number;
-  razaNft: string;
-  3: string;
-  length: 4;
-}
-export interface FoxyLegendarioWomanResponse {
-  listingPriceMistico: BigNumber;
-  0: BigNumber;
-  startTokenId: number;
-  1: number;
-  endTokenId: number;
-  2: number;
-  razaNft: string;
-  3: string;
-  length: 4;
-}
-export interface FoxyMagicoResponse {
-  listingPriceMistico: BigNumber;
-  0: BigNumber;
-  startTokenId: number;
-  1: number;
-  endTokenId: number;
-  2: number;
-  razaNft: string;
-  3: string;
-  length: 4;
-}
-export interface FoxyMagicoWomanResponse {
-  listingPriceMistico: BigNumber;
-  0: BigNumber;
-  startTokenId: number;
-  1: number;
-  endTokenId: number;
-  2: number;
-  razaNft: string;
-  3: string;
-  length: 4;
-}
-export interface FoxyMisticoResponse {
-  listingPriceMistico: BigNumber;
-  0: BigNumber;
-  startTokenId: number;
-  1: number;
-  endTokenId: number;
-  2: number;
-  razaNft: string;
-  3: string;
-  length: 4;
-}
-export interface FoxyMisticoWomanResponse {
-  listingPriceMistico: BigNumber;
-  0: BigNumber;
-  startTokenId: number;
-  1: number;
-  endTokenId: number;
-  2: number;
-  razaNft: string;
-  3: string;
-  length: 4;
-}
 export interface NftitemResponse {
   tokenId: BigNumber;
   0: BigNumber;
@@ -318,7 +156,7 @@ export interface NftitemResponse {
   isListed: boolean;
   3: boolean;
 }
-export interface NftMarketContract {
+export interface NftMarketContractAquans {
   /**
    * Payable: false
    * Constant: false
@@ -333,10 +171,10 @@ export interface NftMarketContract {
    * Type: function
    * @param parameter0 Type: uint256, Indexed: false
    */
-  _GruopFoxy(
+  AllTokens(
     parameter0: BigNumberish,
     overrides?: ContractCallOverrides
-  ): Promise<_GruopFoxyResponse>;
+  ): Promise<AllTokensResponse>;
   /**
    * Payable: false
    * Constant: true
@@ -379,108 +217,6 @@ export interface NftMarketContract {
    * Type: function
    */
   baseURI(overrides?: ContractCallOverrides): Promise<string>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  foxyEpico(overrides?: ContractCallOverrides): Promise<FoxyEpicoResponse>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  foxyEpicoWoman(
-    overrides?: ContractCallOverrides
-  ): Promise<FoxyEpicoWomanResponse>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  foxyGlorioso(
-    overrides?: ContractCallOverrides
-  ): Promise<FoxyGloriosoResponse>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  foxyGloriosoWoman(
-    overrides?: ContractCallOverrides
-  ): Promise<FoxyGloriosoWomanResponse>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  foxyInmortal(
-    overrides?: ContractCallOverrides
-  ): Promise<FoxyInmortalResponse>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  foxyInmortalWoman(
-    overrides?: ContractCallOverrides
-  ): Promise<FoxyInmortalWomanResponse>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  foxyLegendario(
-    overrides?: ContractCallOverrides
-  ): Promise<FoxyLegendarioResponse>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  foxyLegendarioWoman(
-    overrides?: ContractCallOverrides
-  ): Promise<FoxyLegendarioWomanResponse>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  foxyMagico(overrides?: ContractCallOverrides): Promise<FoxyMagicoResponse>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  foxyMagicoWoman(
-    overrides?: ContractCallOverrides
-  ): Promise<FoxyMagicoWomanResponse>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  foxyMistico(overrides?: ContractCallOverrides): Promise<FoxyMisticoResponse>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   */
-  foxyMisticoWoman(
-    overrides?: ContractCallOverrides
-  ): Promise<FoxyMisticoWomanResponse>;
   /**
    * Payable: false
    * Constant: true
@@ -633,131 +369,12 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMaxFoxy Type: uint16, Indexed: false
+   * @param newMax Type: uint16, Indexed: false
+   * @param tokenId Type: uint256, Indexed: false
    */
-  setMaxFoxysMistico(
-    newMaxFoxy: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxFoxy Type: uint16, Indexed: false
-   */
-  setMaxFoxysMagico(
-    newMaxFoxy: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxFoxy Type: uint16, Indexed: false
-   */
-  setMaxFoxysGlorioso(
-    newMaxFoxy: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxFoxy Type: uint16, Indexed: false
-   */
-  setMaxFoxysLegendario(
-    newMaxFoxy: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxFoxy Type: uint16, Indexed: false
-   */
-  setMaxFoxysEpico(
-    newMaxFoxy: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxFoxy Type: uint16, Indexed: false
-   */
-  setMaxFoxysInmortal(
-    newMaxFoxy: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxFoxy Type: uint16, Indexed: false
-   */
-  setMaxFoxysMisticoWoman(
-    newMaxFoxy: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxFoxy Type: uint16, Indexed: false
-   */
-  setMaxFoxysMagicoWoman(
-    newMaxFoxy: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxFoxy Type: uint16, Indexed: false
-   */
-  setMaxFoxysGloriosoWoman(
-    newMaxFoxy: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxFoxy Type: uint16, Indexed: false
-   */
-  setMaxFoxysLegendarioWoman(
-    newMaxFoxy: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxFoxy Type: uint16, Indexed: false
-   */
-  setMaxFoxysEpicoWoman(
-    newMaxFoxy: BigNumberish,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param newMaxFoxy Type: uint16, Indexed: false
-   */
-  setMaxFoxysInmortalWoman(
-    newMaxFoxy: BigNumberish,
+  setMaxNfts(
+    newMax: BigNumberish,
+    tokenId: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**
@@ -839,77 +456,12 @@ export interface NftMarketContract {
    * Constant: false
    * StateMutability: payable
    * Type: function
-   * @param amount Type: uint256, Indexed: false
-   * @param _raza Type: string, Indexed: false
+   * @param tokenType Type: uint256, Indexed: false
+   * @param amount Type: uint8, Indexed: false
    */
-  foxyBuyMistico(
+  AquansBuy(
+    tokenType: BigNumberish,
     amount: BigNumberish,
-    _raza: string,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   * @param _raza Type: string, Indexed: false
-   */
-  foxyBuyMagico(
-    amount: BigNumberish,
-    _raza: string,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   * @param _raza Type: string, Indexed: false
-   */
-  foxyBuyGlorioso(
-    amount: BigNumberish,
-    _raza: string,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   * @param _raza Type: string, Indexed: false
-   */
-  foxyBuyLegendario(
-    amount: BigNumberish,
-    _raza: string,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   * @param _raza Type: string, Indexed: false
-   */
-  foxyBuyEpico(
-    amount: BigNumberish,
-    _raza: string,
-    overrides?: ContractTransactionOverrides
-  ): Promise<ContractTransaction>;
-  /**
-   * Payable: true
-   * Constant: false
-   * StateMutability: payable
-   * Type: function
-   * @param amount Type: uint256, Indexed: false
-   * @param _raza Type: string, Indexed: false
-   */
-  FoxyBuyInmortal(
-    amount: BigNumberish,
-    _raza: string,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
   /**

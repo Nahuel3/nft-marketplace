@@ -7,13 +7,15 @@ import Link from 'next/link'
 import { ChangeEvent, useState } from 'react';
 import { NftMeta, PinataRes } from '@_types/parteAlufi/nftAlufi';
 import axios from 'axios';
-import { useWebs3 } from '@providers/web3/indexx';
+import { useWebs3 } from '@providers/web3/Alufis/alufi';
 import { ethers } from 'ethers';
 
 
 const ALLOWED_FIELDS = ["name", "description", "image", "attributes"];
 
 const NftCreate: NextPage = () => {
+
+  const amount = "2";
  
   const {ethereum, contract } = useWebs3();
   const [nftURI, setNftURI] = useState("");
@@ -101,10 +103,11 @@ const NftCreate: NextPage = () => {
 
   const createAlufiMistico = async () => {
     try {
-      const tx = await contract?.AlufisBuyMistico(
-        parseFloat("2").toString(),
+      const tx = await contract?.AquansBuy(
+        parseFloat("0").toString(),
+        parseFloat("4").toString(),
         {
-          value: ethers.utils.parseEther(0.25.toString())
+          value: ethers.utils.parseEther("1")
         }
       );
 
@@ -115,22 +118,23 @@ const NftCreate: NextPage = () => {
     }
   }
 
-  const createAlufiMagico = async () => {
-    try {
-      const tx = await contract?.AlufisBuyMagico(
-        parseFloat("2").toString(),
-        {
-          value: ethers.utils.parseEther(0.35.toString())
-        }
-      );
-      
+const createAlufiMagico = async () => {
+   try {
+     const tx = await contract?.AquansBuy(
 
-      await tx?.wait();
-      alert("AlufisMagico was created!");
-    } catch (e: any) {
-      console.error(e.message);
-    }
-  }
+     parseFloat("1").toString(),
+     parseFloat("4").toString(),
+      {
+       value: ethers.utils.parseEther("1.4")
+     }
+   );
+
+  await tx?.wait();
+    alert("AlufisMistico was created!");
+  } catch (e: any) {
+     console.error(e.message);
+ }
+ }
 
 
 
@@ -238,15 +242,15 @@ const NftCreate: NextPage = () => {
                       type="button"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                      Mint Alufi mistico
+                      Mint Alufi mistico 0/8
                     </button>
 
                     <button
-                      onClick={createAlufiMagico}
+                    onClick={createAlufiMagico}
                       type="button"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                      Mint Alufi magico
+                      Mint Alufi magico 8/16
                     </button>
 
                   </div>
