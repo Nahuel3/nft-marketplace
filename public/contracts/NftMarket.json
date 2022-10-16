@@ -46598,12 +46598,12 @@
     "11155111": {
       "events": {},
       "links": {},
-      "address": "0x57BC61573370169a71ADf85cBdE59A0b7EFc37ee",
-      "transactionHash": "0x5413a5ad4b23c7231142daed482ff7817e1b739b3dabbe99b98a677f75419bc5"
+      "address": "0x92Edd0358063D5661F644194eA879b8526c303a6",
+      "transactionHash": "0xfe700a7f0d082acd1865038f29e210a48c2f6650e1cb469f9612dc352fd1b0f8"
     }
   },
   "schemaVersion": "3.4.9",
-  "updatedAt": "2022-10-10T22:41:15.847Z",
+  "updatedAt": "2022-10-16T05:12:04.765Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

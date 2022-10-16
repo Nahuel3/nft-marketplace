@@ -3,8 +3,6 @@ const HDWalletProvider = require("@truffle/hdwallet-provider");
 const apikeys = require("./chains/apikeys");
 const keys = require("./keys.json");
 
-
-
 module.exports = { 
   
   plugins: ["truffle-plugin-verify"],
@@ -26,6 +24,7 @@ module.exports = {
         keys.INFURA_SEPOLIA_URL,       
       ),
       network_id: 11155111,
+      chain_id: 11155111,
       gas:5221975,
       gasPrice:20000000000,
       confirmations: 3,
