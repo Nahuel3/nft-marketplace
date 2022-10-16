@@ -96,7 +96,7 @@ export type NftMarketContractSecondsMethodNames =
   | 'tokenOfOwnerByIndex'
   | 'getAllNftsOnSale'
   | 'getOwnedNfts'
-  | 'AquansBuy'
+  | 'buyNfts'
   | 'tokenURI'
   | 'buyNft'
   | 'cancellSellNft'
@@ -369,11 +369,11 @@ export interface NftMarketContractSeconds {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param newMax Type: uint16, Indexed: false
+   * @param newMaxEndTokenId Type: uint16, Indexed: false
    * @param tokenType Type: uint256, Indexed: false
    */
   setMaxNfts(
-    newMax: BigNumberish,
+    newMaxEndTokenId: BigNumberish,
     tokenType: BigNumberish,
     overrides?: ContractTransactionOverrides
   ): Promise<ContractTransaction>;
@@ -459,7 +459,7 @@ export interface NftMarketContractSeconds {
    * @param tokenType Type: uint256, Indexed: false
    * @param amount Type: uint8, Indexed: false
    */
-  AquansBuy(
+  buyNfts(
     tokenType: BigNumberish,
     amount: BigNumberish,
     overrides?: ContractTransactionOverrides

@@ -19,13 +19,13 @@ module.exports = {
       port: 7545,            
      network_id: "*",     
      },
-    ropsten: {
+    sepolia: {
       provider: () => 
       new HDWalletProvider(
         keys.PRIVATE_KEY,
-        keys.INFURA_ROPSTEN_URL,       
+        keys.INFURA_SEPOLIA_URL,       
       ),
-      network_id: 3,
+      network_id: 11155111,
       gas:5221975,
       gasPrice:20000000000,
       confirmations: 3,

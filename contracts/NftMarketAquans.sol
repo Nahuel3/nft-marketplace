@@ -18,13 +18,13 @@ contract NftMarketAquans is ERC721URIStorage, Ownable {
         bool isListed;
     }
 
-    struct GruopNft {
+    struct GroupNft {
         uint64 listingPrice;
         uint16 startTokenId;
         uint16 endTokenId;
     }
 
-    GruopNft[] public AllTokens;
+    GroupNft[] public AllTokens;
 
     Counters.Counter private _listedItems;
     Counters.Counter private _tokenIds;
@@ -50,75 +50,168 @@ contract NftMarketAquans is ERC721URIStorage, Ownable {
     );
 
     constructor() ERC721("SCCNFT", "SNcFT") {
-        AllTokens.push(GruopNft(0.25 ether, 0, 8));
+ 
+        //FOXYS DEJAR ESPACIO DE 10K DE NFTS POR EJEMPLO 0, 10000  .    20000, 40000
+        AllTokens.push(GroupNft(0.0025 ether, 0, 8));   //MYSTIC
 
-        AllTokens.push(GruopNft(0.35 ether, 8, 16));
+        AllTokens.push(GroupNft(0.0035 ether, 16, 32)); //MAGIC
 
-        AllTokens.push(GruopNft(0.45 ether, 16, 32));
+        AllTokens.push(GroupNft(0.45 ether, 48, 72));  //GLORIOUS
+
+        AllTokens.push(GroupNft(0.65 ether, 90, 108));  //LEGENDARY
+
+        AllTokens.push(GroupNft(0.85 ether, 122, 148));  //EPIC
+
+        AllTokens.push(GroupNft(1 ether, 172, 200));  //IMMORTAL
+
+        //FOXYS WOMAN
+        
+        AllTokens.push(GroupNft(0.25 ether, 220, 240));   //MYSTIC
+
+        AllTokens.push(GroupNft(0.35 ether, 280, 320)); //MAGIC
+
+        AllTokens.push(GroupNft(0.45 ether, 360, 400));  //GLORIOUS
+
+        AllTokens.push(GroupNft(0.65 ether, 440, 480));  //LEGENDARY
+
+        AllTokens.push(GroupNft(0.85 ether, 520, 580));  //EPIC
+
+        AllTokens.push(GroupNft(1 ether, 640, 720));  //IMMORTAL
+
+        //ALUFI
+        AllTokens.push(GroupNft(0.25 ether, 780, 840));   //MYSTIC
+
+        AllTokens.push(GroupNft(0.35 ether, 890, 932)); //MAGIC
+
+        AllTokens.push(GroupNft(0.45 ether, 970, 1000));  //GLORIOUS
+
+        AllTokens.push(GroupNft(0.65 ether, 1030, 1080));  //LEGENDARY
+
+        AllTokens.push(GroupNft(0.85 ether, 1120, 1180));  //EPIC
+
+        AllTokens.push(GroupNft(1 ether, 1250, 1300));  //IMMORTAL
+
+        //ALUFI WOMAN
+       AllTokens.push(GroupNft(0.25 ether, 1350, 1400));   //MYSTIC
+
+        AllTokens.push(GroupNft(0.35 ether, 1450, 1500)); //MAGIC
+
+        AllTokens.push(GroupNft(0.45 ether, 1560, 1620));  //GLORIOUS
+
+        AllTokens.push(GroupNft(0.65 ether, 1685, 1725));  //LEGENDARY
+
+        AllTokens.push(GroupNft(0.85 ether, 1760, 1790));  //EPIC
+
+        AllTokens.push(GroupNft(1 ether, 1850, 1920));  //IMMORTAL
+
+        //FLUFFLY
+
+        AllTokens.push(GroupNft(0.25 ether, 1950, 2000));   //MYSTIC
+
+        AllTokens.push(GroupNft(0.35 ether, 2025, 2070)); //MAGIC
+
+        AllTokens.push(GroupNft(0.45 ether, 2110, 2170));  //GLORIOUS
+
+        AllTokens.push(GroupNft(0.65 ether, 2250, 2290));  //LEGENDARY
+
+        AllTokens.push(GroupNft(0.85 ether, 2340, 2400));  //EPIC
+
+        AllTokens.push(GroupNft(1 ether, 2480, 2520));  //IMMORTAL
+
+        //FLUFFLY WOMAN
+        AllTokens.push(GroupNft(0.25 ether, 2580, 2650));   //MYSTIC
+
+        AllTokens.push(GroupNft(0.35 ether, 2700, 2780)); //MAGIC
+
+        AllTokens.push(GroupNft(0.45 ether, 2850, 2900));  //GLORIOUS
+
+        AllTokens.push(GroupNft(0.65 ether, 3000, 3100));  //LEGENDARY
+
+        AllTokens.push(GroupNft(0.85 ether, 3200, 3300));  //EPIC
+
+        AllTokens.push(GroupNft(1 ether, 3400, 3500));  //IMMORTAL
+
+
+        //ELFS 
+        
+        AllTokens.push(GroupNft(0.25 ether, 3600, 3800));   //MYSTIC
+
+        AllTokens.push(GroupNft(0.35 ether, 3900, 4200)); //MAGIC
+
+        AllTokens.push(GroupNft(0.45 ether, 4300, 4350));  //GLORIOUS
+
+        AllTokens.push(GroupNft(0.65 ether, 4380, 4420));  //LEGENDARY
+
+        AllTokens.push(GroupNft(0.85 ether, 4490, 4530));  //EPIC
+
+        AllTokens.push(GroupNft(1 ether, 4700, 4900));  //IMMORTAL
+
+        //ELFS WOMAN
+        AllTokens.push(GroupNft(0.25 ether, 5000, 5100));   //MYSTIC
+
+        AllTokens.push(GroupNft(0.35 ether, 5300, 5325)); //MAGIC
+
+        AllTokens.push(GroupNft(0.45 ether, 5400, 5700));  //GLORIOUS
+
+        AllTokens.push(GroupNft(0.65 ether, 5900, 6100));  //LEGENDARY
+
+        AllTokens.push(GroupNft(0.85 ether, 6400, 6700));  //EPIC
+
+        AllTokens.push(GroupNft(1 ether, 6900, 7000));  //IMMORTAL
+
+        //GOLEMS 
+        AllTokens.push(GroupNft(0.25 ether, 7200, 7300));   //MYSTIC
+
+        AllTokens.push(GroupNft(0.35 ether, 7400, 7500)); //MAGIC
+
+        AllTokens.push(GroupNft(0.45 ether, 7600, 7700));  //GLORIOUS
+
+        AllTokens.push(GroupNft(0.65 ether, 7800, 7900));  //LEGENDARY
+
+        AllTokens.push(GroupNft(0.85 ether, 8200, 8400));  //EPIC
+
+        AllTokens.push(GroupNft(1 ether, 8600, 8800));  //IMMORTAL
+
+        //GOLEMS WOMAN
+
+        AllTokens.push(GroupNft(0.25 ether, 9000, 9200));   //MYSTIC
+
+        AllTokens.push(GroupNft(0.35 ether, 9400, 9630)); //MAGIC
+
+        AllTokens.push(GroupNft(0.45 ether, 9800, 9900));  //GLORIOUS
+
+        AllTokens.push(GroupNft(0.65 ether, 10200, 11000));  //LEGENDARY
+
+        AllTokens.push(GroupNft(0.85 ether, 11250, 11500));  //EPIC
+
+        AllTokens.push(GroupNft(1 ether, 12000, 13000));  //IMMORTAL
+
+        //AQUANS WOMAN
+        AllTokens.push(GroupNft(0.25 ether, 14000, 14500));   //MYSTIC
+
+        AllTokens.push(GroupNft(0.35 ether, 14700, 15000)); //MAGIC
+
+        AllTokens.push(GroupNft(0.45 ether, 15500, 16000));  //GLORIOUS
+
+        AllTokens.push(GroupNft(0.65 ether, 16500, 17000));  //LEGENDARY
+
+        AllTokens.push(GroupNft(0.85 ether, 17500, 18000));  //EPIC
+
+        AllTokens.push(GroupNft(1 ether, 20000, 22500));  //IMMORTAL
+
+        
     }
 
-    function setMaxNfts(uint16 newMax, uint256 tokenId) external onlyOwner {
+    function setMaxNfts(uint16 newMaxEndTokenId, uint256 tokenType) external onlyOwner {
+        GroupNft storage group = AllTokens[tokenType];
         require(
-            newMax > AllTokens[tokenId].endTokenId,
+            newMaxEndTokenId > group.endTokenId,
             "the amount of nft must be greater than the existing one"
         );
-        AllTokens[tokenId].endTokenId = newMax;
+
+        group.endTokenId = newMaxEndTokenId;
+        
     }
-
-    //    function setMaxAquansMagico(uint newMaxAquan) external onlyOwner {
-    //     require(newMaxAquan > maxAquanMagico, "the amount of Aquans must be greater than the existing one");
-    //     maxAquanMagico = newMaxAquan;
-    //    }
-
-    ///    function setMaxAquansGlorioso(uint newMaxAquan) external onlyOwner {
-    //     require(newMaxAquan > maxAquanGlorioso, "the amount of Aquans must be greater than the existing one");
-    //     maxAquanGlorioso = newMaxAquan;
-    //   }
-
-    //   function setMaxAquansLegendario(uint newMaxAquan) external onlyOwner {
-    //    require(newMaxAquan > maxAquanLegendario, "the amount of Aquans must be greater than the existing one");
-    //   maxAquanLegendario = newMaxAquan;
-    //   }
-
-    //  function setMaxAquansEpico(uint newMaxAquan) external onlyOwner {
-    //   require(newMaxAquan > maxAquanEpico, "the amount of Aquans must be greater than the existing one");
-    //    maxAquanEpico = newMaxAquan;
-    //   }
-
-    //    function setMaxAquansInmortal(uint newMaxAquan) external onlyOwner {
-    //        require(newMaxAquan > maxAquanInmortal, "the amount of Aquans must be greater than the existing one");
-    //        maxAquanInmortal = newMaxAquan;
-    //       }
-
-    //        function setMaxAquansMisticoWoman(uint newMaxAquan) external onlyOwner {
-    //        require(newMaxAquan > maxAquanMisticoWoman, "the amount of AquansWoman must be greater than the existing one");
-    //        maxAquanMisticoWoman = newMaxAquan;
-    //       }
-
-    //       function setMaxAquansMagicoWoman(uint newMaxAquan) external onlyOwner {
-    //         require(newMaxAquan > maxAquanMagicoWoman, "the amount of AquansWoman must be greater than the existing one");
-    //         maxAquanMagicoWoman = newMaxAquan;
-    //        }
-
-    //       function setMaxAquansGloriosoWoman(uint newMaxAquan) external onlyOwner {
-    //        require(newMaxAquan > maxAquanGloriosoWoman, "the amount of AquansWoman must be greater than the existing one");
-    //         maxAquanGloriosoWoman = newMaxAquan;
-    //        }
-
-    //       function setMaxAquansLegendarioWoman(uint newMaxAquan) external onlyOwner {
-    //        require(newMaxAquan > maxAquanLegendarioWoman, "the amount of AquansWoman must be greater than the existing one");
-    //        maxAquanLegendarioWoman = newMaxAquan;
-    //        }
-
-    //       function setMaxAquansEpicoWoman(uint newMaxAquan) external onlyOwner {
-    //         require(newMaxAquan > maxAquanEpicoWoman, "the amount of AquansWoman must be greater than the existing one");
-    //         maxAquanEpicoWoman = newMaxAquan;
-    //        }
-
-    //       function setMaxAquansInmortalWoman(uint newMaxAquan) external onlyOwner {
-    //        require(newMaxAquan > maxAquanInmortalWoman, "the amount of AquansWoman must be greater than the existing one");
-    //        maxAquanInmortalWoman = newMaxAquan;
-    //       }
 
     function withdraw() external onlyOwner {
         uint256 amount = address(this).balance;
@@ -188,12 +281,12 @@ contract NftMarketAquans is ERC721URIStorage, Ownable {
         return items;
     }
 
-    function AquansBuy(uint256 tokenType, uint8 amount)
+     function buyNfts(uint256 tokenType, uint8 amount)
         public
         payable
         returns (uint256)
     {
-        GruopNft storage group = AllTokens[tokenType];
+        GroupNft storage group = AllTokens[tokenType];
 
         require(
             msg.value == group.listingPrice * amount,
@@ -205,11 +298,15 @@ contract NftMarketAquans is ERC721URIStorage, Ownable {
             "Nft minted is max"
             );
 
+        require(amount > 0, "Invalid amount");
+
+        uint256 startTokenId = group.startTokenId; //temps variable     hat contains the start value
+        group.startTokenId += amount; //Update the state - this won't change startTokenId temps variable
+
         for (uint256 i = 0; i < amount; ++i) {
-            _safeMint(msg.sender, group.startTokenId);
-            _createNftItem(group.startTokenId);
+        _safeMint(msg.sender, startTokenId + i);
+        _createNftItem(startTokenId + i, tokenType);           
         }
-        group.startTokenId += amount;
 
         return group.startTokenId;
     }
@@ -274,17 +371,17 @@ contract NftMarketAquans is ERC721URIStorage, Ownable {
         _listedItems.increment();
     }
 
-    function _createNftItem(uint256 tokenId) private {
+    function _createNftItem(uint256 tokenId, uint256 tokenType) private {
         _idToNftItem[tokenId] = NftItem(
             tokenId,
-            AllTokens[tokenId].listingPrice,
+            AllTokens[tokenType].listingPrice,
             msg.sender,
             false
         );
 
         emit NftItemCreated(
             tokenId,
-            AllTokens[tokenId].listingPrice,
+            AllTokens[tokenType].listingPrice,
             msg.sender,
             false
         );

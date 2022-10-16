@@ -103,11 +103,11 @@ const NftCreate: NextPage = () => {
 
   const createAlufiMistico = async () => {
     try {
-      const tx = await contract?.AquansBuy(
+      const tx = await contract?.buyNfts(
         parseFloat("0").toString(),
         parseFloat("4").toString(),
         {
-          value: ethers.utils.parseEther("1")
+          value: ethers.utils.parseEther("0.01")
         }
       );
 
@@ -120,12 +120,12 @@ const NftCreate: NextPage = () => {
 
 const createAlufiMagico = async () => {
    try {
-     const tx = await contract?.AquansBuy(
+     const tx = await contract?.buyNfts(
 
      parseFloat("1").toString(),
      parseFloat("4").toString(),
       {
-       value: ethers.utils.parseEther("1.4")
+       value: ethers.utils.parseEther("0.014")
      }
    );
 
@@ -135,6 +135,24 @@ const createAlufiMagico = async () => {
      console.error(e.message);
  }
  }
+
+ const createAlufiGlorioso = async () => {
+  try {
+    const tx = await contract?.buyNfts(
+
+    parseFloat("2").toString(),
+    parseFloat("4").toString(),
+     {
+      value: ethers.utils.parseEther("0.018")
+    }
+  );
+
+ await tx?.wait();
+   alert("AlufisMistico was created!");
+ } catch (e: any) {
+    console.error(e.message);
+}
+}
 
 
 

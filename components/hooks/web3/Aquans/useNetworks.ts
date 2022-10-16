@@ -13,6 +13,7 @@ const NETWORKS: {[k: string]: string} = {
     56: "Binance Smart Chain",
     97: "Binance Smart Chain Test",
     1337: "Ganache",
+    11155111:"Sepolia",
   }
 
   const targetId = process.env.NEXT_PUBLIC_TARGET_CHAIN_ID as string;
