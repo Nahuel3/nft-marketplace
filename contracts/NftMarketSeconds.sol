@@ -338,6 +338,7 @@ contract NftMarketSeconds is ERC721URIStorage, Ownable {
 
         require(msg.sender != owner, "You already own this NFT");
         require(msg.value == price, "Please submit the asking price");
+        require(_idToNftItem[tokenId].isListed == true, "Must be put up for sale");
 
         _idToNftItem[tokenId].isListed = false;
         _listedItems.decrement();
@@ -364,6 +365,10 @@ contract NftMarketSeconds is ERC721URIStorage, Ownable {
         require(
             _idToNftItem[tokenId].isListed == false,
             "Item is already on sale"
+        );
+        require(
+            newPrice > 0,
+            "price must be greater than 0"
         );
 
         _idToNftItem[tokenId].isListed = true;

@@ -40645,12 +40645,12 @@
     "11155111": {
       "events": {},
       "links": {},
-      "address": "0xd4204b07F8F6eFBCe50FEa33230E8Ae8BAaa2e4b",
-      "transactionHash": "0x1370e6e2ad18a0a78fb694b27618483bd159a92da2b7a2f9d64452380292959f"
+      "address": "0xb329C4d60f68B69dbA836356e661bb966620984f",
+      "transactionHash": "0x5ef728354217cdd7a35add53499607de2d1b3224a46952c0377615cb9d8e9a63"
     }
   },
   "schemaVersion": "3.4.9",
-  "updatedAt": "2022-10-16T05:14:01.940Z",
+  "updatedAt": "2022-10-19T08:45:05.081Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
